@@ -81,8 +81,8 @@ public class RobotContainer {
     rightButton2.whenPressed(driveMaxSpeed);
     leftButton1.whenPressed(driveSlowSpeed);
     rightButton1.whenPressed(driveNormal);
-    rightButton4.whenPressed(spinCP);
-    leftButton4.whenPressed(setCPColor);
+    //rightButton4.whenPressed(spinCP);
+    //leftButton4.whenPressed(setCPColor);
     rightButton11.toggleWhenPressed(runShooter);
     leftButton6.whenPressed(runIntake);
     rightButton3.whenHeld(runConveyor);

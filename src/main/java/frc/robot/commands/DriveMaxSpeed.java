@@ -28,7 +28,7 @@ public class DriveMaxSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    //set robot speed between -1 and 1 depending on joystick position
     Robot.driveTrain.setDriveWithMultiplier(1.0);
 
   }

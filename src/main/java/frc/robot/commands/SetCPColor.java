@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class SetCPColor extends CommandBase {
 
-  String setColor, currentColor;
+  String setColor, currentColor, prevColor;
   int counter;
   boolean missionComplete;
 
@@ -48,7 +48,7 @@ public class SetCPColor extends CommandBase {
     if (setColor.equals(currentColor)) {
       counter++;
       // if it has been good color for enough time then stop spinning
-      if (counter == 10) {
+      if (counter == 5) {
         missionComplete = true;
       }
     }

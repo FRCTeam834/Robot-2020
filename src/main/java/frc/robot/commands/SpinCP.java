@@ -26,7 +26,7 @@ public class SpinCP extends CommandBase {
   public void initialize() {
     // find color when code first called
     firstColor = Robot.controlPanelManip.determineWheelColor();
-    currentColor = Robot.controlPanelManip.determineWheelColor();
+    currentColor = Robot.controlPanelManip.determineWheelColor(); 
     prevColor = null;
     colorChangeCounter = 0;
     spinCounter = 0;

@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -23,13 +24,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;;
 //https://github.com/REVrobotics/Color-Sensor-v3-Examples/tree/master/Java/Color%20Match
 
 public class ControlPanelManip extends SubsystemBase {
-  /**
-   * Creates a new ColorSensor.
-   */
+
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
-  WPI_TalonSRX cPWheel = new WPI_TalonSRX(Constants.CONTROL_PANEL_MOTOR_PORT);
+  //WPI_TalonSRX cPWheel = new WPI_TalonSRX(Constants.CONTROL_PANEL_MOTOR_PORT);
 
   public ControlPanelManip() {
     // add wheel colors to the color match thing so it works
@@ -100,12 +99,12 @@ public class ControlPanelManip extends SubsystemBase {
   }
 
   public void start() {
-    cPWheel.set(Constants.CP_WHEEL_SPEED);
+    //cPWheel.set(Constants.CP_WHEEL_SPEED);
   }
 
   public void stop() {
 
-    cPWheel.set(0);
+   //cPWheel.set(0);
 
   }
 

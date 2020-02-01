@@ -38,19 +38,25 @@ public final class Constants {
     public static final double S_PROPORTIONAL_CONSTANT = 6;
     public static final double S_INTEGRAL_CONSTANT = 5;
     public static final double S_DERIVATIVE_CONSTANT = 4;
-    public static final int SHOOTER_TOP_MOTOR = 3;
-    public static final int SHOOTER_BOTTOM_MOTOR = 6;
+    public static final int SHOOTER_TOP_MOTOR = 6;
+    public static final int SHOOTER_BOTTOM_MOTOR = 5;
 
     //Drive train stuff
-    public static final int L_DRIVE1_PORT = 0;
-    public static final int L_DRIVE2_PORT = 0;
-    public static final int R_DRIVE1_PORT = 0;
-    public static final int R_DRIVE2_PORT = 0;
+    public static final int L_DRIVE1_PORT = 1;
+    public static final int L_DRIVE2_PORT = 2;
+    public static final int R_DRIVE1_PORT = 3;
+    public static final int R_DRIVE2_PORT = 4;
 
     //intake
-    public static final int INTAKE_MOTOR_PORT = 9;
+    public static final int INTAKE_MOTOR_PORT = 7;
 
     //conveyor
-    public static final int CONVEYOR_MOTOR = 11;
+    public static final int CONVEYOR_MOTOR = 8;
+
+    //auton constants
+    public static final double ksVolts = 0;
+    public static final double kvVoltSecondsPerMeter = 0;
+    public static final double kaVoltSecondsSquaredPerMeter = 0;
+    public static final double kPDriveVel = 0;
 
 }
