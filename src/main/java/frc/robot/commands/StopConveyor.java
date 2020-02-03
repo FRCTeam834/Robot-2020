@@ -24,6 +24,7 @@ public class StopConveyor extends CommandBase {
   @Override
   public void initialize() {
     Robot.conveyor.stop();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.

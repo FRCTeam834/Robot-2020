@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+/*
 public class SpinCP extends CommandBase {
 
   String currentColor, firstColor, prevColor;
@@ -83,3 +83,4 @@ public class SpinCP extends CommandBase {
     return missionComplete;
   }
 }
+*/

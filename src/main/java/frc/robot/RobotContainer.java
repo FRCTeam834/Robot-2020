@@ -16,8 +16,8 @@ import frc.robot.commands.DriveSlowSpeed;
 import frc.robot.commands.RunConveyor;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
-import frc.robot.commands.SpinCP;
-import frc.robot.commands.SetCPColor;
+//import frc.robot.commands.SpinCP;
+//import frc.robot.commands.SetCPColor;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -39,12 +39,13 @@ public class RobotContainer {
   private final DriveMaxSpeed driveMaxSpeed = new DriveMaxSpeed();
   private final RunIntake runIntake = new RunIntake();
   private final RunShooter runShooter = new RunShooter();
-  private final SpinCP spinCP = new SpinCP();
-  private final SetCPColor setCPColor = new SetCPColor();
+  //private final SpinCP spinCP = new SpinCP();
+  //private final SetCPColor setCPColor = new SetCPColor();
   private final RunConveyor runConveyor = new RunConveyor();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
+  private final Joystick launchpad = new Joystick(3);
 
   private final JoystickButton leftButton0 = new JoystickButton(leftJoystick, 0);
   private final JoystickButton leftButton1 = new JoystickButton(leftJoystick, 1);
@@ -59,6 +60,12 @@ public class RobotContainer {
   private final JoystickButton rightButton3 = new JoystickButton(rightJoystick, 3);
   private final JoystickButton rightButton4 = new JoystickButton(rightJoystick, 4);
   private final JoystickButton rightButton11 = new JoystickButton(rightJoystick, 11);
+
+  private final JoystickButton BGTL = new JoystickButton(launchpad, 7), BGTM = new JoystickButton(launchpad, 2),
+      BGTR = new JoystickButton(launchpad, 4), BGML = new JoystickButton(launchpad, 1),
+      BGMM = new JoystickButton(launchpad, 6), BGMR = new JoystickButton(launchpad, 3),
+      BGBL = new JoystickButton(launchpad, 10), BGBM = new JoystickButton(launchpad, 9),
+      BGBR = new JoystickButton(launchpad, 8);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -77,15 +84,18 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     //rightButton3.whenPressed(driveMaxSpeed);
-    leftButton3.whenPressed(runIntake);
+    //leftButton3.whenHeld(runIntake);
     rightButton2.whenPressed(driveMaxSpeed);
     leftButton1.whenPressed(driveSlowSpeed);
     rightButton1.whenPressed(driveNormal);
+    BGTL.toggleWhenPressed(runIntake);
+    BGTM.toggleWhenPressed(runConveyor);
     //rightButton4.whenPressed(spinCP);
     //leftButton4.whenPressed(setCPColor);
-    rightButton11.toggleWhenPressed(runShooter);
-    leftButton6.whenPressed(runIntake);
-    rightButton3.whenHeld(runConveyor);
+    //rightButton11.toggleWhenPressed(runShooter);
+    //leftButton6.whenPressed(runIntake);
+    //rightButton3.whenHeld(runConveyor);
+    BGTR.toggleWhenPressed(runShooter);
 
   }
 

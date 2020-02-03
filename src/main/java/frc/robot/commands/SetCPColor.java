@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+/*
 public class SetCPColor extends CommandBase {
 
   String setColor, currentColor, prevColor;
@@ -67,3 +67,4 @@ public class SetCPColor extends CommandBase {
     return missionComplete;
   }
 }
+*/

@@ -5,7 +5,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -15,9 +14,9 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.I2C;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
-import frc.robot.commands.PrintColor;
-import frc.robot.commands.StopCPManip;
-
+//import frc.robot.commands.PrintColor;
+//import frc.robot.commands.StopCPManip;
+/*
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;;
 
 //https://first.wpi.edu/FRC/roborio/development/docs/java/edu/wpi
@@ -47,7 +46,7 @@ public class ControlPanelManip extends SubsystemBase {
 
   public double getRed() {
 
-    return colorSensor.getRed();
+    colorSensor.getRed();
 
   }
 
@@ -109,3 +108,4 @@ public class ControlPanelManip extends SubsystemBase {
   }
 
 }
+*/

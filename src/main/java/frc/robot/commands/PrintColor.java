@@ -9,11 +9,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+/*
 public class PrintColor extends CommandBase {
-  /**
-   * Creates a new PrintColor.
-   */
+
   public PrintColor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.controlPanelManip);
@@ -43,3 +41,4 @@ public class PrintColor extends CommandBase {
     return false;
   }
 }
+*/

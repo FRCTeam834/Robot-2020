@@ -9,11 +9,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+/*
 public class StopCPManip extends CommandBase {
-  /**
-   * Creates a new StopCPManip.
-   */
+
   public StopCPManip() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.controlPanelManip);
@@ -42,3 +40,4 @@ public class StopCPManip extends CommandBase {
     return false;
   }
 }
+*/

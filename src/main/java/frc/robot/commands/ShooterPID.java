@@ -7,49 +7,38 @@
 
 package frc.robot.commands;
 
-import com.revrobotics.CANSparkMax;
-
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.Constants;
-import frc.robot.subsystems.BallIntake;
-import frc.robot.subsystems.Shooter;
+import frc.robot.Robot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class ShooterPID extends PIDCommand {
-  /**
-   * Creates a new ShooterPID.
-   */
-  public ShooterPID(Shooter shooter) {
+
+  public ShooterPID(double targetBottomRPM) {
     super(
         // The controller that the command will use
-        new PIDController(Constants.S_PROPORTIONAL_CONSTANT, Constants.S_INTEGRAL_CONSTANT,
-            Constants.S_DERIVATIVE_CONSTANT),
+        new PIDController(0, 0, 0),
         // This should return the measurement
-        shooter.getBottomEncoder()::getVelocity,
+        (Robot.shooter.getBottomEncoder()::getVelocity),
         // This should return the setpoint (can also be a constant)
-        Constants.S_BOTTOM_WHEEL_SPEED,
+        (targetBottomRPM),
         // This uses the output
         output -> {
           // Use the output here
-          double currentSetting = shooter.getBottomMotor().get();
-          shooter.setBottomSpeed(currentSetting + shooter.normalize(output));
-          shooter.setTopSpeed(Constants.S_BACKSPIN_RATIO * (currentSetting + shooter.normalize(output)));
+          Robot.shooter.setBottomSpeed(Robot.shooter.normalize(output));
+          Robot.shooter.setTopSpeed(Robot.shooter.normalize(output));
         });
-
-    getController().enableContinuousInput(0, 1);
-    getController().setTolerance(.005);
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.shooter);
     // Configure additional PID options by calling `getController` here.
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-    return getController().atSetpoint();
-
+    return false;
   }
 }

@@ -16,7 +16,7 @@ public class RunIntake extends CommandBase {
    */
   public RunIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.runIntake);
+    addRequirements(Robot.ballIntake);
   }
 
   // Called when the command is initially scheduled.

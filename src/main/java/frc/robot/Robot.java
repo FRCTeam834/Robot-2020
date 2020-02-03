@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -18,7 +20,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.TurretEncoder;
-import frc.robot.subsystems.ControlPanelManip;
+//import frc.robot.subsystems.ControlPanelManip;
 import frc.robot.subsystems.Conveyor;
 
 /**
@@ -37,10 +39,11 @@ public class Robot extends TimedRobot {
   public static Subsystem[] runIntake;
   public static Turret turret;
   public static TurretEncoder turretEncoder;
-  public static ControlPanelManip controlPanelManip;
+  //public static ControlPanelManip controlPanelManip;
   public static Shooter shooter;
   public static String gameData;
   public static Conveyor conveyor;
+  public UsbCamera camera;
 
   private RobotContainer m_robotContainer;
 
@@ -59,12 +62,14 @@ public class Robot extends TimedRobot {
     ballIntake = new BallIntake();
     turret = new Turret();
     turretEncoder = new TurretEncoder();
-    controlPanelManip = new ControlPanelManip();
+    //controlPanelManip = new ControlPanelManip();
     conveyor = new Conveyor();
 
     gameData = "";
 
     m_robotContainer = new RobotContainer();
+    camera = CameraServer.getInstance().startAutomaticCapture();
+
   }
 
   /**
@@ -80,7 +85,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
-    // commands, running already-scheduled commands, removing finished or
+    // commands, running already-scheduled commands, removingsjhdfgas finished or
     // interrupted commands,
     // and running subsystem periodic() methods. This must be called from the
     // robot's periodic
