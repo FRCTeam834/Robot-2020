@@ -11,11 +11,14 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SPI;
+//import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 
 public class NavX extends SubsystemBase {
   /**
    * Creates a new NavX.
    */
+  //private final DifferentialDriveOdometry m_Odometry;
+
   AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
   public NavX() {

@@ -9,6 +9,7 @@ package frc.robot;
 
 import com.revrobotics.ColorMatch;
 
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.util.Color;
 
 /**
@@ -52,6 +53,7 @@ public final class Constants {
 
     //conveyor
     public static final int CONVEYOR_MOTOR = 8;
+    public static final int BALL_SENSOR_PORT = 0;
 
     //auton constants
     public static final double ksVolts = 0;
@@ -59,8 +61,8 @@ public final class Constants {
     public static final double kaVoltSecondsSquaredPerMeter = 0;
     public static final double kPDriveVel = 0;
     public static final double kTrackwidthMeters = 0;
-    public static final DifferentialDriveKinematics kDriveKinematics =
-        new DifferentialDriveKinematics(kTrackwidthMeters);
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
+            kTrackwidthMeters);
     public static final double kMaxSpeedMetersPerSecond = 0;
     public static final double kMaxAccelerationMetersPerSecondSquared = 0;
     public static final double kRamseteB = 2;

@@ -68,7 +68,7 @@ public class Robot extends TimedRobot {
     gameData = "";
 
     m_robotContainer = new RobotContainer();
-    camera = CameraServer.getInstance().startAutomaticCapture();
+    //camera = CameraServer.getInstance().startAutomaticCapture();
 
   }
 

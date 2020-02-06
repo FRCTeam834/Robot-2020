@@ -9,8 +9,11 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
+import frc.robot.commands.RunConveyorSensor;
 import frc.robot.commands.StopConveyor;
 
 public class Conveyor extends SubsystemBase {
@@ -18,9 +21,10 @@ public class Conveyor extends SubsystemBase {
    * Creates a new Conveyor.
    */
   WPI_TalonSRX conveyorMotor = new WPI_TalonSRX(Constants.CONVEYOR_MOTOR);
+  DigitalInput ballSensor = new DigitalInput(Constants.BALL_SENSOR_PORT);
 
   public Conveyor() {
-
+    //setDefaultCommand(new StopConveyor());
   }
 
   @Override
@@ -29,8 +33,12 @@ public class Conveyor extends SubsystemBase {
     setDefaultCommand(new StopConveyor());
   }
 
-  public void start() {
-    conveyorMotor.set(.75);
+  public boolean getSensor() {
+    return ballSensor.get();
+  }
+
+  public void start(double speed) {
+    conveyorMotor.set(speed);
   }
 
   public void stop() {
