@@ -11,6 +11,7 @@ import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.util.Units
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -56,15 +57,16 @@ public final class Constants {
     public static final int BALL_SENSOR_PORT = 0;
 
     //auton constants
-    public static final double ksVolts = 0;
-    public static final double kvVoltSecondsPerMeter = 0;
-    public static final double kaVoltSecondsSquaredPerMeter = 0;
-    public static final double kPDriveVel = 0;
-    public static final double kTrackwidthMeters = 0;
+    //haha dont touch os
+    public static final double ksVolts = .146;
+    public static final double kvVoltSecondsPerMeter = 2.18;
+    public static final double kaVoltSecondsSquaredPerMeter = .571;
+    public static final double kPDriveVel = 18.2;
+    public static final double kTrackwidthMeters = .629796255;
     public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
             kTrackwidthMeters);
-    public static final double kMaxSpeedMetersPerSecond = 0;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 0;
+    public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(3);
+    public static final double kMaxAccelerationMetersPerSecondSquared = Units.feetToMeters(5);
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
 
