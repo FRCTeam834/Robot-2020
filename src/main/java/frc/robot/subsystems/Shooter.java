@@ -116,7 +116,7 @@ public class Shooter extends SubsystemBase {
     topSpeed = j.getRawAxis(2);
     topSpeed = topSpeed + 1;
     topSpeed = topSpeed / 2;
-    topShooter.set(topSpeed);
+    topShooter.set(-topSpeed);
     System.out.println("TopSpeed: " + topShooter.getEncoder().getVelocity());
     // System.out.println("TopSpeed: " + topSpeed + " Output: " /* + intakeMotor.getMotorOutputPercent() */);
     // System.out.println("Top Output Voltage: " /* +
