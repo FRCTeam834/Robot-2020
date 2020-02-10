@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-/*
+
 public class SpinCP extends CommandBase {
 
   String currentColor, firstColor, prevColor;
@@ -49,6 +49,7 @@ public class SpinCP extends CommandBase {
       // for long enough, switch that to current color and set previous color to old
       // color
       if (colorChangeCounter == 0) {
+        if (currentColor)
         prevColor = currentColor;
         currentColor = Robot.controlPanelManip.determineWheelColor();
         colorChangeCounter = 0;
@@ -82,5 +83,3 @@ public class SpinCP extends CommandBase {
 
     return missionComplete;
   }
-}
-*/

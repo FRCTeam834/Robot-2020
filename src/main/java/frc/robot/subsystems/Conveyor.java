@@ -12,9 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.commands.RunConveyorSensor;
-import frc.robot.commands.StopConveyor;
+import frc.robot.Robot; 
 
 public class Conveyor extends SubsystemBase {
   /**
@@ -30,7 +28,7 @@ public class Conveyor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per schedule run
-    setDefaultCommand(new StopConveyor());
+    //setDefaultCommand(new StopConveyor());
   }
 
   public boolean getSensor() {
