@@ -42,6 +42,7 @@ public final class Constants {
     public static final double S_DERIVATIVE_CONSTANT = 4;
     public static final int SHOOTER_TOP_MOTOR = 6;
     public static final int SHOOTER_BOTTOM_MOTOR = 5;
+    public static final double AUTON_SHOOTER_SPEED = .7;
 
     //Drive train stuff
     public static final int L_DRIVE1_PORT = 1;
@@ -55,19 +56,40 @@ public final class Constants {
     //conveyor
     public static final int CONVEYOR_MOTOR = 8;
     public static final int BALL_SENSOR_PORT = 0;
+    public static final double AUTON_CONVEYOR_SPEED = .5;
 
     //auton constants
     //haha dont touch os
-    public static final double ksVolts = .146;
-    public static final double kvVoltSecondsPerMeter = 2.18;
+    public static final double ksVolts = .185;
+    public static final double kvVoltSecondsPerMeter = 2.11;
     public static final double kaVoltSecondsSquaredPerMeter = .571;
     public static final double kPDriveVel = 18.2;
-    public static final double kTrackwidthMeters = .629796255;
+    public static final double kTrackwidthMeters = .64557;
     public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
             kTrackwidthMeters);
-    public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(3);
-    public static final double kMaxAccelerationMetersPerSecondSquared = Units.feetToMeters(5);
+    public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(2);
+    public static final double kMaxAccelerationMetersPerSecondSquared = Units.feetToMeters(4);
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
+
+    //vision auto constants
+    public static final double TOLERANCE = 10;
+    public static final double SPEED_INDEX = .001;
+    public static final double BALL_AREA = 1;
+    public static final double BALL_DISTANCE = 1;
+    public static final double GOAL_AREA = .00001;
+    public static final double GOAL_DISTANCE = 1;
+
+    //Command IDs for Driver Input
+    //First Digit = Main Subsystem Number
+    //1 = DriveTrain
+    //2 = Conveyor
+    //3 = BallIntake
+    //4 = Hood
+    //5 = EVS
+    //Second Digit = Command ID
+    public static final int DRIVE_MAX_SPEED_ID = 12;
+    public static final int DRIVE_NORMAL_ID = 11;
+    public static final int DRIVE_SLOW_SPEED_ID = 13;
 
 }

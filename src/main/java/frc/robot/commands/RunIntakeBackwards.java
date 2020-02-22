@@ -9,62 +9,39 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-/*
-public class SetCPColor extends CommandBase {
 
-  String setColor, currentColor, prevColor;
-  int counter;
-  boolean missionComplete;
-
-  public SetCPColor() {
+public class RunIntakeBackwards extends CommandBase {
+  /**
+   * Creates a new RunIntake.
+   */
+  public RunIntakeBackwards() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.controlPanelManip);
+    addRequirements(Robot.ballIntake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    setColor = "";
-    currentColor = Robot.controlPanelManip.determineWheelColor();
-    setColor = Robot.gameData;
-    Robot.controlPanelManip.start();
-    missionComplete = false;
-    counter = 0;
+
+    Robot.ballIntake.startBackwards();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // update current color
-    currentColor = Robot.controlPanelManip.determineWheelColor();
-    // System.out.println(counter);
 
-    // check if color is valid
-    if (setColor.length() == 0) {
-      setColor = Robot.gameData;
-    }
-
-    // fun logic to make sure color is good
-    if (setColor.equals(currentColor)) {
-      counter++;
-      // if it has been good color for enough time then stop spinning
-      if (counter == 5) {
-        missionComplete = true;
-      }
-    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //Robot.controlPanelManip.stop();
-    missionComplete = false;
+    Robot.ballIntake.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return missionComplete;
+    return false;
   }
 }
-*/

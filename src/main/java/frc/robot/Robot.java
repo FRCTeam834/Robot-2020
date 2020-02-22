@@ -11,15 +11,16 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.commands.DriveNormal;
 import frc.robot.commands.RunIntake;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.EVSNetworkTables;
+import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Turret;
-import frc.robot.subsystems.TurretEncoder;
 //import frc.robot.subsystems.ControlPanelManip;
 import frc.robot.subsystems.Conveyor;
 
@@ -31,19 +32,19 @@ import frc.robot.subsystems.Conveyor;
  * project.
  */
 public class Robot extends TimedRobot {
-  // private Command m_autonomousCommand;
+  private Command m_autonomousCommand;
 
   public static DriveTrain driveTrain;
   public static DriveNormal driveNormal;
   public static BallIntake ballIntake;
   public static Subsystem[] runIntake;
-  public static Turret turret;
-  public static TurretEncoder turretEncoder;
   //public static ControlPanelManip controlPanelManip;
   public static Shooter shooter;
   public static String gameData;
   public static Conveyor conveyor;
+  public static EVSNetworkTables EVSNetworkTables;
   public UsbCamera camera;
+  public static NavX navX;
 
   private RobotContainer m_robotContainer;
 
@@ -56,14 +57,15 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
+    navX = new NavX();
     driveTrain = new DriveTrain();
     driveNormal = new DriveNormal();
     shooter = new Shooter();
+
     ballIntake = new BallIntake();
-    turret = new Turret();
-    turretEncoder = new TurretEncoder();
     //controlPanelManip = new ControlPanelManip();
     conveyor = new Conveyor();
+    EVSNetworkTables = new EVSNetworkTables();
 
     gameData = "";
 
@@ -111,12 +113,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
-    /*
-     * if (m_autonomousCommand != null) { m_autonomousCommand.schedule(); }
-     */
+
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
+
   }
 
   /**
@@ -132,9 +136,10 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    /*
-     * if (m_autonomousCommand != null) { m_autonomousCommand.cancel(); }
-     */
+
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
 
   }
 

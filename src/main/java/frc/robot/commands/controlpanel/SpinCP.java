@@ -5,11 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.controlpanel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+/*
 public class SpinCP extends CommandBase {
 
   String currentColor, firstColor, prevColor;
@@ -82,4 +82,4 @@ public class SpinCP extends CommandBase {
   public boolean isFinished() {
 
     return missionComplete;
-  }
+  }*/

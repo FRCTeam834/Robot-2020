@@ -39,7 +39,13 @@ public class BallIntake extends SubsystemBase {
 
   public void start() {
 
-    intakeMotor.set(.5);
+    intakeMotor.set(1);
+
+  }
+
+  public void startBackwards() {
+
+    intakeMotor.set(-.5);
 
   }
 

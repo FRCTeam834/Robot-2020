@@ -109,14 +109,15 @@ public class Shooter extends SubsystemBase {
     System.out.println("BottomSpeedJoystick: " + bottomSpeed);
     bottomSpeed = bottomSpeed + 1;
     bottomSpeed = bottomSpeed / 2;
-    bottomShooter.set(-bottomSpeed);
+    //bottomShooter.set(bottomSpeed);
     System.out.println("BottomSpeed: " + bottomShooter.getEncoder().getVelocity());
 
     double topSpeed;
     topSpeed = j.getRawAxis(2);
     topSpeed = topSpeed + 1;
     topSpeed = topSpeed / 2;
-    topShooter.set(-topSpeed);
+    //topShooter.set(-topSpeed);
+    topShooter.set(bottomSpeed);
     System.out.println("TopSpeed: " + topShooter.getEncoder().getVelocity());
     // System.out.println("TopSpeed: " + topSpeed + " Output: " /* + intakeMotor.getMotorOutputPercent() */);
     // System.out.println("Top Output Voltage: " /* +

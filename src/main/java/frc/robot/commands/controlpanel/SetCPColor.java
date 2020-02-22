@@ -5,70 +5,66 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.controlpanel;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.Turret;
+/*
+public class SetCPColor extends CommandBase {
 
-public class MoveTurret extends CommandBase {
-  /**
-   * Creates a new MoveTurret.
-   */
-  private boolean done = false;
-  private Turret t = Robot.turret;
-  private int encoderValue = 0;
-  private Joystick joy = new Joystick(1);
-  private double target = 0;
+  String setColor, currentColor, prevColor;
+  int counter;
+  boolean missionComplete;
 
-  public MoveTurret() {
+  public SetCPColor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.turret);
+    addRequirements(Robot.controlPanelManip);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    t.stop();
-
+    setColor = "";
+    currentColor = Robot.controlPanelManip.determineWheelColor();
+    setColor = Robot.gameData;
+    Robot.controlPanelManip.start();
+    missionComplete = false;
+    counter = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // update current color
+    currentColor = Robot.controlPanelManip.determineWheelColor();
+    // System.out.println(counter);
 
-    // encoderValue = t.getEncoderValue();
-    target = joy.getRawAxis(3);
-    if (joy.getRawButton(5)) {
-
-      t.runForward();
-
-    } else if (joy.getRawButton(4)) {
-
-      t.runBackward();
-
-    } else {
-
-      t.stop();
-
+    // check if color is valid
+    if (setColor.length() == 0) {
+      setColor = Robot.gameData;
     }
 
+    // fun logic to make sure color is good
+    if (setColor.equals(currentColor)) {
+      counter++;
+      // if it has been good color for enough time then stop spinning
+      if (counter == 5) {
+        missionComplete = true;
+      }
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    t.stop();
-    done = false;
-
+    //Robot.controlPanelManip.stop();
+    missionComplete = false;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return done;
+    return missionComplete;
   }
 }
+*/

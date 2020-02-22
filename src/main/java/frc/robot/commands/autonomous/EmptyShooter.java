@@ -5,16 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.Robot;
+import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.Shooter;
 
-public class NavXUpdator extends CommandBase {
+public class EmptyShooter extends CommandBase {
   /**
-   * Creates a new NavXUpdator.
+   * Creates a new EmptyShooter.
    */
-  public NavXUpdator() {
+
+  public EmptyShooter() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(new Shooter(), new Conveyor());
   }
 
   // Called when the command is initially scheduled.
@@ -26,6 +32,10 @@ public class NavXUpdator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    Robot.shooter.setBottomSpeed(Constants.AUTON_SHOOTER_SPEED);
+    Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
+    //sensor check here if(!topSensor){ isFinished = true;}
 
   }
 
