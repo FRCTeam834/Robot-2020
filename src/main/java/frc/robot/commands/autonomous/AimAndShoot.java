@@ -20,6 +20,6 @@ public class AimAndShoot extends SequentialCommandGroup {
   public AimAndShoot() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new Aim(), /*new ShooterToSpeed,*/ new EmptyShooter());
+    super(new Aim(), new ShooterToSpeed(), new EmptyShooter());
   }
 }

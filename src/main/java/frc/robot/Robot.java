@@ -19,6 +19,7 @@ import frc.robot.commands.RunIntake;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.EVSNetworkTables;
+import frc.robot.subsystems.GimbalLock;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Shooter;
 //import frc.robot.subsystems.ControlPanelManip;
@@ -44,6 +45,7 @@ public class Robot extends TimedRobot {
   public static Conveyor conveyor;
   public static EVSNetworkTables EVSNetworkTables;
   public UsbCamera camera;
+  public static GimbalLock gimbalLock;
   public static NavX navX;
 
   private RobotContainer m_robotContainer;
@@ -61,6 +63,7 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     driveNormal = new DriveNormal();
     shooter = new Shooter();
+    gimbalLock = new GimbalLock();
 
     ballIntake = new BallIntake();
     //controlPanelManip = new ControlPanelManip();

@@ -9,44 +9,50 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
 
-public class Conveyor extends SubsystemBase {
+public class GimbalLock extends SubsystemBase {
   /**
-   * Creates a new Conveyor.
+   * Creates a new ShooterPivot.
    */
-  WPI_TalonSRX conveyorMotor = new WPI_TalonSRX(Constants.CONVEYOR_MOTOR);
-  DigitalInput ballSensor = new DigitalInput(Constants.BALL_SENSOR_PORT);
-  DigitalInput emptySensor = new DigitalInput(Constants.EMPTY_SENSOR_PORT);
 
-  public Conveyor() {
-    //setDefaultCommand(new StopConveyor());
+  WPI_TalonSRX pivot = new WPI_TalonSRX(Constants.SHOOTER_PIVOT_MOTOR);
+  Encoder e = new Encoder(Constants.GIMBAL_LOCK_PORT1, Constants.GIMBAL_LOCK_PORT2);
+
+  public GimbalLock() {
+
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per schedule run
-    //setDefaultCommand(new StopConveyor());
-  }
-
-  public boolean getSensor() {
-    return ballSensor.get();
-  }
-
-  public boolean getEmptySensor() {
-
-    return emptySensor.get();
+    // This method will be called once per scheduler run
 
   }
 
-  public void start(double speed) {
-    conveyorMotor.set(speed);
+  public void tiltUp(double n) {
+
+    pivot.set(n);
+
+  }
+
+  public void tiltDown(double n) {
+
+    pivot.set(-n);
+
   }
 
   public void stop() {
-    conveyorMotor.set(0);
+
+    pivot.set(0);
+
   }
+
+  public Encoder getEncoder() {
+
+    return e;
+
+  }
+
 }

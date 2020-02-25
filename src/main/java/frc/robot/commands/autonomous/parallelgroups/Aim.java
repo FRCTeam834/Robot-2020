@@ -9,6 +9,7 @@ package frc.robot.commands.autonomous.parallelgroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.vision.LookAtGoalX;
+import frc.robot.commands.vision.LookAtGoalY;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
@@ -22,6 +23,6 @@ public class Aim extends ParallelCommandGroup {
   public Aim() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
-    super(new LookAtGoalX()/*, LookAtGoalY()*/);
+    super(new LookAtGoalX(), new LookAtGoalY());
   }
 }

@@ -9,6 +9,7 @@ package frc.robot;
 
 import com.revrobotics.ColorMatch;
 
+import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Units;
@@ -36,13 +37,23 @@ public final class Constants {
 
     //Shooter Constants
     public static final double S_BACKSPIN_RATIO = 4 / 7;
-    public static final double S_BOTTOM_WHEEL_SPEED = 3500;
+    public static final double S_WHEEL_SPEED = 3600 / 60; //rps
+    public static final double S_WHEEL_VOLTAGE = 10; //Measure pls
     public static final double S_PROPORTIONAL_CONSTANT = 6;
     public static final double S_INTEGRAL_CONSTANT = 5;
     public static final double S_DERIVATIVE_CONSTANT = 4;
     public static final int SHOOTER_TOP_MOTOR = 6;
     public static final int SHOOTER_BOTTOM_MOTOR = 5;
     public static final double AUTON_SHOOTER_SPEED = .7;
+    public static final int SHOOTER_PIVOT_MOTOR = 10; //NEEDS TO BE ADDED STILL
+
+    public static final double ROBOT_HEIGHT = 32.222 / 12;
+    public static final double WHEEL_CIRCUMFERENCE = 5 * Math.PI / 12;
+    public static final double SHOOTER_MOUTH_WIDTH = 10; //Currently a placeholder best be in feet
+    public static final int GIMBAL_LOCK_PORT2 = 6; //find
+    public static final int GIMBAL_LOCK_PORT1 = 9; //do
+    public static final double GIMBAL_MULTIPLIER = 5; //be
+    public static final double VENEZUELA_INFLATION = 5; //conversion from encoder to radians/degrees
 
     //Drive train stuff
     public static final int L_DRIVE1_PORT = 1;
@@ -56,6 +67,7 @@ public final class Constants {
     //conveyor
     public static final int CONVEYOR_MOTOR = 8;
     public static final int BALL_SENSOR_PORT = 0;
+    public static final int EMPTY_SENSOR_PORT = 5; //Check this one
     public static final double AUTON_CONVEYOR_SPEED = .5;
 
     //auton constants
@@ -91,5 +103,12 @@ public final class Constants {
     public static final int DRIVE_MAX_SPEED_ID = 12;
     public static final int DRIVE_NORMAL_ID = 11;
     public static final int DRIVE_SLOW_SPEED_ID = 13;
+
+    /*
+    
+    
+    
+    */
+    public static int[][] driverInputArray = new int[5][5];
 
 }

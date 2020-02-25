@@ -24,8 +24,7 @@ public class Shooter extends SubsystemBase {
   Joystick j = new Joystick(0);
   Joystick j2 = new Joystick(1);
 
-  CANSparkMax topShooter = new CANSparkMax(Constants.SHOOTER_TOP_MOTOR, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax bottomShooter = new CANSparkMax(Constants.SHOOTER_BOTTOM_MOTOR, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax shooter = new CANSparkMax(Constants.SHOOTER_BOTTOM_MOTOR, CANSparkMax.MotorType.kBrushless);
 
   public Shooter() {
 
@@ -37,57 +36,33 @@ public class Shooter extends SubsystemBase {
     setDefaultCommand(new StopShooter());
   }
 
-  public void setTopSpeed(double speed) {
+  public void setSpeed(double speed) {
 
-    topShooter.set(speed);
-
-  }
-
-  public void setBottomSpeed(double speed) {
-
-    bottomShooter.set(speed);
+    shooter.set(speed);
 
   }
 
-  public CANEncoder getTopEncoder() {
+  public CANEncoder getEncoder() {
 
-    return topShooter.getEncoder();
-
-  }
-
-  public CANEncoder getBottomEncoder() {
-
-    return bottomShooter.getEncoder();
+    return shooter.getEncoder();
 
   }
 
-  public double getTopMotorTemp() {
+  public double getMotorTemp() {
 
-    return topShooter.getMotorTemperature();
-
-  }
-
-  public double getBottomMotorTemp() {
-
-    return bottomShooter.getMotorTemperature();
+    return shooter.getMotorTemperature();
 
   }
 
   public byte[] getSocialSecurityNumber() {
 
-    return topShooter.getSerialNumber();
+    return shooter.getSerialNumber();
 
   }
 
-  public CANSparkMax getTopMotor() {
+  public CANSparkMax getMotor() {
 
-    return topShooter;
-
-  }
-
-  public CANSparkMax getBottomMotor() {
-
-    return bottomShooter;
+    return shooter;
 
   }
 
@@ -98,8 +73,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void stop() {
-    topShooter.set(0);
-    bottomShooter.set(0);
+    shooter.set(0);
   }
 
   public void setIntakeToJoystick() {
@@ -110,8 +84,8 @@ public class Shooter extends SubsystemBase {
     bottomSpeed = bottomSpeed + 1;
     bottomSpeed = bottomSpeed / 2;
     //bottomShooter.set(bottomSpeed);
-    System.out.println("BottomSpeed: " + bottomShooter.getEncoder().getVelocity());
-
+    System.out.println("BottomSpeed: " + shooter.getEncoder().getVelocity());
+    /*
     double topSpeed;
     topSpeed = j.getRawAxis(2);
     topSpeed = topSpeed + 1;
@@ -119,6 +93,7 @@ public class Shooter extends SubsystemBase {
     //topShooter.set(-topSpeed);
     topShooter.set(bottomSpeed);
     System.out.println("TopSpeed: " + topShooter.getEncoder().getVelocity());
+    */
     // System.out.println("TopSpeed: " + topSpeed + " Output: " /* + intakeMotor.getMotorOutputPercent() */);
     // System.out.println("Top Output Voltage: " /* +
     // intakeMotor.getMotorOutputVoltage() */);

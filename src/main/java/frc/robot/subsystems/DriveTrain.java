@@ -129,7 +129,7 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println("Turnt: " + Rotation2d.fromDegrees(Robot.navX.getYaw()));
+    //System.out.println("Turnt: " + Rotation2d.fromDegrees(Robot.navX.getYaw()));
 
     dDriveOdometry.update(Rotation2d.fromDegrees(Robot.navX.getCurrentDegrees()), leftDrive1.getEncoder().getPosition(),
         rightDrive1.getEncoder().getPosition());
@@ -185,6 +185,8 @@ public class DriveTrain extends SubsystemBase {
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
 
+    System.out.println(leftVolts);
+    System.out.println(rightVolts);
     leftDrive1.setVoltage(leftVolts);
     rightDrive1.setVoltage(-rightVolts);
     dDrive.feed();

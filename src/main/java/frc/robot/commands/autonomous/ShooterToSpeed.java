@@ -10,19 +10,16 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.subsystems.Conveyor;
-import frc.robot.subsystems.Shooter;
 
-public class EmptyShooter extends CommandBase {
+public class ShooterToSpeed extends CommandBase {
   /**
-   * Creates a new EmptyShooter.
+   * Creates a new ShooterToSpeed.
    */
-
   private boolean isFinished = false;
 
-  public EmptyShooter() {
+  public ShooterToSpeed() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(new Shooter(), new Conveyor());
+    addRequirements(Robot.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -30,6 +27,7 @@ public class EmptyShooter extends CommandBase {
   public void initialize() {
 
     isFinished = false;
+    Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
 
   }
 
@@ -37,10 +35,11 @@ public class EmptyShooter extends CommandBase {
   @Override
   public void execute() {
 
-    Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
-    Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
-    if (!Robot.conveyor.getEmptySensor())
-      isFinished = true; //may need to remove exclamation point
+    if (Robot.shooter.getEncoder().getVelocity() >= (Constants.S_WHEEL_SPEED * 60)) {
+
+      isFinished = true;
+
+    }
 
   }
 
