@@ -53,12 +53,17 @@ public class LookAtGoalY extends CommandBase {
 
     }
 
-    double distance = goal.getDistance() * Math.sin(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION)/12; //The 5 is a placeholder for shooter angle
+    double distance = goal.getDistance() * Math.sin(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION) / 12; //The 5 is a placeholder for shooter angle
+    double v = Constants.S_WHEEL_SPEED * Constants.WHEEL_CIRCUMFERENCE;
+    double phi = g.getEncoder().getDistance();
+    double a = Math.pow(distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(phi), 2) / (v);
+    double b = distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(phi);
+    double c = 98.25 / 12 - Constants.SHOOTER_MOUTH_WIDTH * Math.cos(phi);
+    angleRequirement = 2 * (Math.atan(b - Math.sqrt(-Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) / (a + c))));
+    if (angleRequirement < 0)
+      angleRequirement = 2 * (Math.atan(b + Math.sqrt(-Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) / (a + c))));
+    angleRequirement = angleRequirement % (2 * Math.PI);
 
-    //Apply Angle formula
-    //98.25/12 - Constants.ROBOT_HEIGHT - Constants.SHOOTER_MOUTH_WIDTH * Math.cos(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION) = Math.tan(theta) (distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION)) - 16 * Math.pow(distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION), 2)/(Math.pow(Constants.S_WHEEL_SPEED * Constants.WHEEL_CIRCUMFERENCE * Math.cos(theta), 2))
-    98.25/12 - Constants.ROBOT_HEIGHT - Constants.SHOOTER_MOUTH_WIDTH * Math.cos(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION) = Math.tan(theta) (distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION)) - 16 * Math.pow(distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(g.getEncoder().getDistance() * Constants.VENEZUELA_INFLATION), 2)/(Math.pow(Constants.S_WHEEL_SPEED * Constants.WHEEL_CIRCUMFERENCE * Math.cos(theta), 2))
-    //angleRequirement = solution to ^^.
   }
 
   // Called every time the scheduler runs while the command is scheduled.

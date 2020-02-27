@@ -30,6 +30,7 @@ import frc.robot.commands.RunConveyor;
 import frc.robot.commands.RunConveyorSensor;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.autonomous.MoveBack;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.commands.SpinCP;
 //import frc.robot.commands.SetCPColor;
@@ -50,7 +51,7 @@ public class RobotContainer {
 
   // private final ExampleCommand m_autoCommand = new
   // ExampleCommand(m_exampleSubsystem);
-  private final DriveTrain driveTrain = new DriveTrain();
+  //private final DriveTrain driveTrain = new DriveTrain();
   private final DriveNormal driveNormal = new DriveNormal();
   private final DriveSlowSpeed driveSlowSpeed = new DriveSlowSpeed();
   private final DriveMaxSpeed driveMaxSpeed = new DriveMaxSpeed();
@@ -140,22 +141,22 @@ public class RobotContainer {
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(1, 0)),
+        List.of(new Translation2d(1, 1)),
         // End 3 meters straight ahead of where we started, facing forward
         new Pose2d(1, 0, new Rotation2d(0)),
         // Pass config
         config);
 
-    RamseteCommand ramseteCommand = new RamseteCommand(exampleTrajectory, driveTrain::getPose,
+    RamseteCommand ramseteCommand = new RamseteCommand(exampleTrajectory, Robot.driveTrain::getPose,
         new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
         new SimpleMotorFeedforward(Constants.ksVolts, Constants.kvVoltSecondsPerMeter,
             Constants.kaVoltSecondsSquaredPerMeter),
-        Constants.kDriveKinematics, driveTrain::getWheelSpeeds, new PIDController(Constants.kPDriveVel, 0, 0),
+        Constants.kDriveKinematics, Robot.driveTrain::getWheelSpeeds, new PIDController(Constants.kPDriveVel, 0, 0),
         new PIDController(Constants.kPDriveVel, 0, 0),
         // RamseteCommand passes volts to the callback
-        driveTrain::tankDriveVolts, driveTrain);
+        Robot.driveTrain::tankDriveVolts, Robot.driveTrain);
 
     // Run path following command, then stop at the end.
-    return ramseteCommand.andThen(() -> driveTrain.tankDriveVolts(0, 0));
+    return ramseteCommand.andThen(() -> Robot.driveTrain.tankDriveVolts(0, 0));
   }
 }

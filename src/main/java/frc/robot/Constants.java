@@ -105,10 +105,10 @@ public final class Constants {
     public static final int DRIVE_SLOW_SPEED_ID = 13;
 
     /*
-    
+    [Name Low-Speed High Speed]
     
     
     */
-    public static int[][] driverInputArray = new int[5][5];
+    public static String[][] driverInputArray = new String{{"Christian Piper", "0.25", "0.75"}};
 
 }
