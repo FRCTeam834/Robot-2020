@@ -49,6 +49,7 @@ public class Robot extends TimedRobot {
   public static NavX navX;
 
   private RobotContainer m_robotContainer;
+  private static int ballCount;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -71,9 +72,12 @@ public class Robot extends TimedRobot {
     EVSNetworkTables = new EVSNetworkTables();
 
     gameData = "";
+    ballCount = 0;
 
     m_robotContainer = new RobotContainer();
     //camera = CameraServer.getInstance().startAutomaticCapture();
+    driveTrain.resetPose();
+    navX.resetYaw();
 
   }
 
@@ -116,6 +120,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
@@ -151,6 +156,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    shooter.setSpeed(-1);
   }
 
   @Override

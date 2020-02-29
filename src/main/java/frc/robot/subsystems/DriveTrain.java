@@ -40,9 +40,9 @@ public class DriveTrain extends SubsystemBase {
 
   Joystick l = new Joystick(0);
   Joystick r = new Joystick(1);
-  float compassHeading = Robot.navX.getCurrentDegrees();
+  float compassHeading = Robot.navX.getRoll();
   DifferentialDriveOdometry dDriveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(compassHeading));
-
+  
   public DriveTrain() {
 
     leftDriveGroup.setInverted(true);
@@ -52,12 +52,16 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     //System.out.println("Turnt: " + Rotation2d.fromDegrees(Robot.navX.getYaw()));
-
-    dDriveOdometry.update(Rotation2d.fromDegrees(Robot.navX.getCurrentDegrees()), leftDrive1.getEncoder().getPosition(),
+    System.out.println("Pose: " + dDriveOdometry.getPoseMeters());
+    dDriveOdometry.update(Rotation2d.fromDegrees(compassHeading), leftDrive1.getEncoder().getPosition(),
         rightDrive1.getEncoder().getPosition());
     dDrive.setSafetyEnabled(false);
     //setDefaultCommand(Robot.driveNormal);
 
+  }
+
+  public void resetPose() {
+    dDriveOdometry.resetPosition(new Pose2d(), Rotation2d.fromDegrees(0));
   }
 
   public void leftDrive(double speed) {

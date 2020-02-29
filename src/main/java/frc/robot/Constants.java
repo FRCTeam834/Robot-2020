@@ -42,8 +42,8 @@ public final class Constants {
     public static final double S_PROPORTIONAL_CONSTANT = 6;
     public static final double S_INTEGRAL_CONSTANT = 5;
     public static final double S_DERIVATIVE_CONSTANT = 4;
-    public static final int SHOOTER_TOP_MOTOR = 6;
-    public static final int SHOOTER_BOTTOM_MOTOR = 5;
+    public static final int SHOOTER_TOP_MOTOR = 5;
+    public static final int SHOOTER_BOTTOM_MOTOR = 6;
     public static final double AUTON_SHOOTER_SPEED = .7;
     public static final int SHOOTER_PIVOT_MOTOR = 10; //NEEDS TO BE ADDED STILL
 
@@ -75,12 +75,12 @@ public final class Constants {
     public static final double ksVolts = .185;
     public static final double kvVoltSecondsPerMeter = 2.11;
     public static final double kaVoltSecondsSquaredPerMeter = .571;
-    public static final double kPDriveVel = 18.2;
+    public static final double kPDriveVel = 1.82;
     public static final double kTrackwidthMeters = .64557;
     public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
             kTrackwidthMeters);
-    public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(2);
-    public static final double kMaxAccelerationMetersPerSecondSquared = Units.feetToMeters(4);
+    public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(1);
+    public static final double kMaxAccelerationMetersPerSecondSquared = Units.feetToMeters(21);
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
 
@@ -108,7 +108,7 @@ public final class Constants {
     [Name Low-Speed High Speed]
     
     
+    
+    public static String[][] driverInputArray = new String({"Christian Piper", "0.25", "0.75"}};
     */
-    public static String[][] driverInputArray = new String{{"Christian Piper", "0.25", "0.75"}};
-
 }
