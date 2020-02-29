@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
   public static NavX navX;
 
   private RobotContainer m_robotContainer;
-  private static int ballCount;
+  public static int ballCount;
 
   /**
    * This function is run when the robot is first started up and should be used

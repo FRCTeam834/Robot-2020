@@ -5,43 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.subsystems.Conveyor;
-import frc.robot.subsystems.Shooter;
 
-public class EmptyShooter extends CommandBase {
+public class ResetBallCount extends CommandBase {
   /**
-   * Creates a new EmptyShooter.
+   * Creates a new ResetBallCount.
    */
-
-  private boolean isFinished = false;
-
-  public EmptyShooter() {
+  public ResetBallCount() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(new Shooter(), new Conveyor());
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    isFinished = false;
-
+    Robot.ballCount = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
-    Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
-    if (!Robot.conveyor.getTopSensor()) {
-      isFinished = true; //may need to remove exclamation point
-    }
-
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +37,6 @@ public class EmptyShooter extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isFinished;
+    return false;
   }
 }

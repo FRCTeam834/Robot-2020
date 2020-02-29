@@ -28,8 +28,11 @@ import frc.robot.commands.DriveNormal;
 import frc.robot.commands.DriveSlowSpeed;
 import frc.robot.commands.RunConveyor;
 import frc.robot.commands.RunConveyorSensor;
+import frc.robot.commands.RunConveyorBackward;
 import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunIntakeBackwards;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.vision.ToggleVision;
 //imautonomousport frc.robot.commands..MoveBack;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.commands.SpinCP;
@@ -56,11 +59,14 @@ public class RobotContainer {
   private final DriveSlowSpeed driveSlowSpeed = new DriveSlowSpeed();
   private final DriveMaxSpeed driveMaxSpeed = new DriveMaxSpeed();
   private final RunIntake runIntake = new RunIntake();
+  private final RunIntakeBackwards runIntakeBackwards = new RunIntakeBackwards();
   private final RunShooter runShooter = new RunShooter();
   //private final SpinCP spinCP = new SpinCP();
   //private final SetCPColor setCPColor = new SetCPColor();
   private final RunConveyor runConveyor = new RunConveyor();
   private final RunConveyorSensor runConveyorSensor = new RunConveyorSensor();
+  private final ToggleVision toggleVision = new ToggleVision();
+  private final RunConveyorBackward runConveyorBackward = new RunConveyorBackward();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
@@ -116,6 +122,9 @@ public class RobotContainer {
     //rightButton3.whenHeld(runConveyor);
     BGTR.toggleWhenPressed(runShooter);
     rightButton3.toggleWhenPressed(runConveyorSensor);
+    BGML.toggleWhenPressed(runConveyorBackward);
+    BGML.toggleWhenPressed(runIntakeBackwards);
+    BGMR.whenPressed(toggleVision);
 
   }
 

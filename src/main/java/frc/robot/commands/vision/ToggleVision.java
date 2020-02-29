@@ -5,43 +5,39 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.subsystems.Conveyor;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.EVSNetworkTables;
 
-public class EmptyShooter extends CommandBase {
+public class ToggleVision extends CommandBase {
   /**
-   * Creates a new EmptyShooter.
+   * Networktables (boolean) EVS/run_vision_processing -> true / false
    */
+  boolean togVisFlag;
 
-  private boolean isFinished = false;
-
-  public EmptyShooter() {
+  public ToggleVision() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(new Shooter(), new Conveyor());
+    addRequirements(Robot.EVSNetworkTables);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if (Robot.EVSNetworkTables.getVisionTable().getEntry("run_vision_processing").getBoolean(false) == true) {
+      togVisFlag = false;
+    }
+    if (Robot.EVSNetworkTables.getVisionTable().getEntry("run_vision_processing").getBoolean(false) == false) {
+      togVisFlag = true;
+    }
 
-    isFinished = false;
-
+    Robot.EVSNetworkTables.getVisionTable().getEntry("run_vision_processing").setBoolean(togVisFlag);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
-    Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
-    if (!Robot.conveyor.getTopSensor()) {
-      isFinished = true; //may need to remove exclamation point
-    }
-
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +48,6 @@ public class EmptyShooter extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isFinished;
+    return false;
   }
 }

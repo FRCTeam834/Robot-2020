@@ -17,6 +17,10 @@ public class RunConveyorSensor extends CommandBase {
   boolean isBall;
   int trueCounter, falseCounter;
 
+  //ok so this variable will say if the sensor was previously covered or uncovered so we can tell when a new ball is passing in front of it.
+  boolean prevBottomSensorStatus;
+  boolean prevTopSensorStatus; //same deal as bottom sensor
+
   public RunConveyorSensor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.conveyor);
@@ -29,13 +33,16 @@ public class RunConveyorSensor extends CommandBase {
     falseCounter = 0;
     trueCounter = 0;
 
+    prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
+    prevTopSensorStatus = Robot.conveyor.getTopSensor();
+
     Robot.conveyor.stop();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    isBall = Robot.conveyor.getSensor();
+    isBall = Robot.conveyor.getBottomSensor();
 
     //check if ball blocking sensor, if it's been long enough, start the motor
     // if not, add to counter
@@ -54,6 +61,20 @@ public class RunConveyorSensor extends CommandBase {
       falseCounter = 0;
     } else if (isBall == true) {
       trueCounter++;
+    }
+
+    if (Robot.conveyor.getBottomSensor() == true && prevBottomSensorStatus == false) {
+      prevBottomSensorStatus = true;
+      Robot.ballCount++;
+    } else if (Robot.conveyor.getTopSensor() == true && prevTopSensorStatus == false) {
+      prevTopSensorStatus = true;
+      Robot.ballCount--;
+    }
+
+    if (Robot.conveyor.getBottomSensor() == false && prevBottomSensorStatus == true) {
+      prevBottomSensorStatus = false;
+    } else if (Robot.conveyor.getTopSensor() == false && prevTopSensorStatus == true) {
+      prevTopSensorStatus = false;
     }
   }
 

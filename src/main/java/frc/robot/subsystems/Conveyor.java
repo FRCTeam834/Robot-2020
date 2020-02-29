@@ -19,8 +19,8 @@ public class Conveyor extends SubsystemBase {
    * Creates a new Conveyor.
    */
   WPI_TalonSRX conveyorMotor = new WPI_TalonSRX(Constants.CONVEYOR_MOTOR);
-  DigitalInput ballSensor = new DigitalInput(Constants.BALL_SENSOR_PORT);
-  DigitalInput emptySensor = new DigitalInput(Constants.EMPTY_SENSOR_PORT);
+  DigitalInput bottomSensor = new DigitalInput(Constants.BALL_SENSOR_PORT);
+  DigitalInput topSensor = new DigitalInput(Constants.EMPTY_SENSOR_PORT);
 
   public Conveyor() {
     //setDefaultCommand(new StopConveyor());
@@ -32,14 +32,12 @@ public class Conveyor extends SubsystemBase {
     //setDefaultCommand(new StopConveyor());
   }
 
-  public boolean getSensor() {
-    return ballSensor.get();
+  public boolean getBottomSensor() {
+    return bottomSensor.get();
   }
 
-  public boolean getEmptySensor() {
-
-    return emptySensor.get();
-
+  public boolean getTopSensor() {
+    return topSensor.get();
   }
 
   public void start(double speed) {

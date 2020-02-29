@@ -17,10 +17,9 @@ public class DriveNormal extends CommandBase {
    * Creates a new DriveNormal.
    */
 
-   DriveTrain d;
-   Joystick l = new Joystick(0);
-   Joystick r = new Joystick(1);
-
+  DriveTrain d;
+  Joystick l = new Joystick(0);
+  Joystick r = new Joystick(1);
 
   public DriveNormal() {
     // Use addRequirements() here to declare subsystem dependencies.

@@ -26,12 +26,12 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  CANSparkMax leftDrive1 = new CANSparkMax(Constants.L_DRIVE1_PORT, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive2 = new CANSparkMax(Constants.L_DRIVE2_PORT, CANSparkMax.MotorType.kBrushless);
-  //CANSparkMax leftDrive3 = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive1 = new CANSparkMax(Constants.R_DRIVE1_PORT, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive2 = new CANSparkMax(Constants.R_DRIVE2_PORT, CANSparkMax.MotorType.kBrushless);
-  //CANSparkMax rightDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive1 = new CANSparkMax(Constants.LEFT_DRIVE_MOTOR_1, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive2 = new CANSparkMax(Constants.LEFT_DRIVE_MOTOR_2, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive3 = new CANSparkMax(Constants.LEFT_DRIVE_MOTOR_3, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive1 = new CANSparkMax(Constants.RIGHT_DRIVE_MOTOR_1, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive2 = new CANSparkMax(Constants.RIGHT_DRIVE_MOTOR_2, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive3 = new CANSparkMax(Constants.RIGHT_DRIVE_MOTOR_3, CANSparkMax.MotorType.kBrushless);
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
@@ -42,10 +42,29 @@ public class DriveTrain extends SubsystemBase {
   Joystick r = new Joystick(1);
   float compassHeading = Robot.navX.getRoll();
   DifferentialDriveOdometry dDriveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(compassHeading));
-  
+
   public DriveTrain() {
 
     leftDriveGroup.setInverted(true);
+    resetEncoderPosition();
+
+  }
+
+  public void resetEncoderPosition() {
+
+    leftDrive1.getEncoder().setPosition(0);
+    leftDrive2.getEncoder().setPosition(0);
+    leftDrive3.getEncoder().setPosition(0);
+    rightDrive1.getEncoder().setPosition(0);
+    rightDrive2.getEncoder().setPosition(0);
+    rightDrive3.getEncoder().setPosition(0);
+    leftDrive1.getEncoder().setPositionConversionFactor(Constants.DRIVE_CONVERSION_FACTOR);
+    leftDrive2.getEncoder().setPositionConversionFactor(Constants.DRIVE_CONVERSION_FACTOR);
+    leftDrive3.getEncoder().setPositionConversionFactor(Constants.DRIVE_CONVERSION_FACTOR);
+    rightDrive1.getEncoder().setPositionConversionFactor(Constants.DRIVE_CONVERSION_FACTOR);
+    rightDrive2.getEncoder().setPositionConversionFactor(Constants.DRIVE_CONVERSION_FACTOR);
+    rightDrive3.getEncoder().setPositionConversionFactor(Constants.DRIVE_CONVERSION_FACTOR);
+
   }
 
   @Override
@@ -86,6 +105,22 @@ public class DriveTrain extends SubsystemBase {
   public CANEncoder getEncoders() {
 
     return leftDrive1.getEncoder();
+
+  }
+
+  public double getLeftEncoderValue() {
+
+    double returnValue = (leftDrive1.getEncoder().getPosition() + leftDrive2.getEncoder().getPosition()
+        + leftDrive3.getEncoder().getPosition()) / 3;
+    return returnValue;
+
+  }
+
+  public double getRightEncoderValue() {
+
+    double returnValue = (rightDrive1.getEncoder().getPosition() + rightDrive2.getEncoder().getPosition()
+        + rightDrive3.getEncoder().getPosition()) / 3;
+    return returnValue;
 
   }
 

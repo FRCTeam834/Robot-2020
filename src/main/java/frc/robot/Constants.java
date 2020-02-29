@@ -56,10 +56,14 @@ public final class Constants {
     public static final double VENEZUELA_INFLATION = 5; //conversion from encoder to radians/degrees
 
     //Drive train stuff
-    public static final int L_DRIVE1_PORT = 1;
-    public static final int L_DRIVE2_PORT = 2;
-    public static final int R_DRIVE1_PORT = 3;
-    public static final int R_DRIVE2_PORT = 4;
+    public static final int LEFT_DRIVE_MOTOR_1 = 0;
+    public static final int LEFT_DRIVE_MOTOR_2 = 0;
+    public static final int LEFT_DRIVE_MOTOR_3 = 0;
+    public static final int RIGHT_DRIVE_MOTOR_1 = 0;
+    public static final int RIGHT_DRIVE_MOTOR_2 = 0;
+    public static final int RIGHT_DRIVE_MOTOR_3 = 0;
+
+    public static final double DRIVE_CONVERSION_FACTOR = 0;
 
     //intake
     public static final int INTAKE_MOTOR_PORT = 7;
@@ -107,8 +111,8 @@ public final class Constants {
     /*
     [Name Low-Speed High Speed]
     
-    
-    
-    public static String[][] driverInputArray = new String({"Christian Piper", "0.25", "0.75"}};
     */
+
+    //public static String[][] driverInputArray = new String{{"Christian Piper", "0.25", "0.75"}, {"Standard", "0",}};
+
 }
