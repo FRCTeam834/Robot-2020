@@ -149,6 +149,18 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
+  public Joystick getJoystickL() {
+
+    return l;
+
+  }
+
+  public Joystick getJoystickR() {
+
+    return r;
+
+  }
+
   public void tankDriveVolts(double leftVolts, double rightVolts) {
 
     System.out.println(leftVolts);

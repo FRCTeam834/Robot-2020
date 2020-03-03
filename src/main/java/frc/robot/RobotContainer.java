@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -32,7 +33,11 @@ import frc.robot.commands.RunConveyorBackward;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeBackwards;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.ResetBallCount;
+import frc.robot.commands.StopConveyor;
 import frc.robot.commands.vision.ToggleVision;
+import frc.robot.commands.StopIntake;
+import frc.robot.commands.autonomous.AimAndShoot;
 //imautonomousport frc.robot.commands..MoveBack;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.commands.SpinCP;
@@ -67,6 +72,10 @@ public class RobotContainer {
   private final RunConveyorSensor runConveyorSensor = new RunConveyorSensor();
   private final ToggleVision toggleVision = new ToggleVision();
   private final RunConveyorBackward runConveyorBackward = new RunConveyorBackward();
+  private final ResetBallCount resetBallCount = new ResetBallCount();
+  private final StopConveyor stopConveyor = new StopConveyor();
+  private final StopIntake stopIntake = new StopIntake();
+  private final AimAndShoot aimAndShoot = new AimAndShoot();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
@@ -98,6 +107,21 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+  }
+
+  public ArrayList<Command> getCommands() {
+
+    ArrayList<Command> t = new ArrayList<Command>();
+    t.add(driveNormal);
+    t.add(driveMaxSpeed);
+    t.add(driveSlowSpeed);
+    t.add(runIntake);
+    t.add(runIntakeBackwards);
+    t.add(stopIntake);
+    t.add(toggleVision);
+    t.add(aimAndShoot);
+    return t;
+
   }
 
   /**

@@ -10,6 +10,7 @@ package frc.robot;
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.DigitalSource;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Units;
@@ -53,15 +54,15 @@ public final class Constants {
     public static final int GIMBAL_LOCK_PORT2 = 6; //find
     public static final int GIMBAL_LOCK_PORT1 = 9; //do
     public static final double GIMBAL_MULTIPLIER = 5; //be
-    public static final double VENEZUELA_INFLATION = 5; //conversion from encoder to radians/degrees
+    public static final int HOOD_GEAR_RATIO = 18 / 26;
 
     //Drive train stuff
-    public static final int LEFT_DRIVE_MOTOR_1 = 0;
-    public static final int LEFT_DRIVE_MOTOR_2 = 0;
-    public static final int LEFT_DRIVE_MOTOR_3 = 0;
-    public static final int RIGHT_DRIVE_MOTOR_1 = 0;
-    public static final int RIGHT_DRIVE_MOTOR_2 = 0;
-    public static final int RIGHT_DRIVE_MOTOR_3 = 0;
+    public static final int LEFT_DRIVE_MOTOR_1 = 1;
+    public static final int LEFT_DRIVE_MOTOR_2 = 2;
+    public static final int LEFT_DRIVE_MOTOR_3 = 3;
+    public static final int RIGHT_DRIVE_MOTOR_1 = 4;
+    public static final int RIGHT_DRIVE_MOTOR_2 = 5;
+    public static final int RIGHT_DRIVE_MOTOR_3 = 6;
 
     public static final double DRIVE_CONVERSION_FACTOR = 0;
 
@@ -101,12 +102,16 @@ public final class Constants {
     //1 = DriveTrain
     //2 = Conveyor
     //3 = BallIntake
-    //4 = Hood
-    //5 = EVS
+    //4 = EVS
     //Second Digit = Command ID
     public static final int DRIVE_MAX_SPEED_ID = 12;
     public static final int DRIVE_NORMAL_ID = 11;
     public static final int DRIVE_SLOW_SPEED_ID = 13;
+    public static final int RUN_INTAKE_ID = 31;
+    public static final int RUN_INTAKE_BACKWARDS_ID = 32;
+    public static final int STOP_INTAKE_ID = 33;
+    public static final int TOGGLE_VISION_ID = 41;
+    public static final int AIM_AND_SHOOT_ID = 42;
 
     /*
     [Name Low-Speed High Speed]

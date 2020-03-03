@@ -7,10 +7,23 @@
 
 package frc.robot;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
+import org.opencv.core.Point;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -24,6 +37,7 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Shooter;
 //import frc.robot.subsystems.ControlPanelManip;
 import frc.robot.subsystems.Conveyor;
+import frc.robot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,6 +64,16 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public static int ballCount;
+
+  private int cycleCount = 0;
+  private boolean recordStatus = false;
+  private Object[][] commandValues = new Object[3][1500];
+  private int n = 0;
+  private double systemTimeStart = 0;
+  private boolean running = false;
+  private int m = 0;
+  private int o = 0;
+  private Object[][] commandVals = new Object[3][1500];
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -136,6 +160,67 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
+    if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Driver Input") && running == false) {
+
+      running = true;
+
+      try {
+
+        ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(
+            new FileInputStream("/home/lvuser/" + SmartDashboard.getString("DB/String 0", ""))));
+        commandVals = (Object[][]) ois.readObject();
+
+      } catch (Exception e1) {
+
+        e1.printStackTrace();
+
+      }
+
+      m = 0;
+      o = 0;
+      cycleCount = 0;
+
+    }
+
+    if (running) {
+
+      if (o != 0)
+        m = o + 1;
+
+      for (int p = m; (int) commandVals[3][p] != cycleCount; p++)
+        o = p;
+
+      for (int p = m; p <= o; p++) {
+
+        if ((int) commandVals[1][p] == 11)
+          driveTrain.setDrive(.5 * ((Point) commandVals[2][p]).x, .5 * ((Point) commandVals[2][p]).y);
+
+        if ((int) commandVals[1][p] == 12)
+          driveTrain.setDrive(((Point) commandVals[2][p]).x, ((Point) commandVals[2][p]).y);
+
+        if ((int) commandVals[1][p] == 13)
+          driveTrain.setDrive(.25 * ((Point) commandVals[2][p]).x, .25 * ((Point) commandVals[2][p]).y);
+
+        if ((int) commandVals[1][p] == 31)
+          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(3));
+
+        if ((int) commandVals[1][p] == 32)
+          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(4));
+
+        if ((int) commandVals[1][p] == 33)
+          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(5));
+
+        if ((int) commandVals[1][p] == 41)
+          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(6));
+
+        if ((int) commandVals[1][p] == 42)
+          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(7));
+
+      }
+
+    }
+
   }
 
   @Override
@@ -157,6 +242,128 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     shooter.setSpeed(-1);
+
+    if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Record") && !recordStatus) {
+      recordStatus = true;
+      systemTimeStart = System.currentTimeMillis() / 1000;
+      System.out.println("Recording");
+      n = 0;
+      cycleCount = 0;
+    }
+    if (recordStatus) {
+      if (!m_robotContainer.getCommands().get(0).isFinished()) {
+
+        commandValues[1][n] = 11;
+        commandValues[2][n] = new Point(driveTrain.getJoystickL().getY(), driveTrain.getJoystickR().getY());
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(1).isFinished()) {
+
+        commandValues[1][n] = 12;
+        commandValues[2][n] = new Point(driveTrain.getJoystickL().getY(), driveTrain.getJoystickR().getY());
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(2).isFinished()) {
+
+        commandValues[1][n] = 13;
+        commandValues[2][n] = new Point(driveTrain.getJoystickL().getY(), driveTrain.getJoystickR().getY());
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(3).isFinished()) {
+
+        commandValues[1][n] = 31;
+        commandValues[2][n] = true;
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(4).isFinished()) {
+
+        commandValues[1][n] = 32;
+        commandValues[2][n] = true;
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(5).isFinished()) {
+
+        commandValues[1][n] = 33;
+        commandValues[2][n] = true;
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(6).isFinished()) {
+
+        commandValues[1][n] = 41;
+        commandValues[2][n] = true;
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+      if (!m_robotContainer.getCommands().get(7).isFinished()) {
+
+        commandValues[1][n] = 42;
+        commandValues[2][n] = true;
+        commandValues[3][n] = cycleCount;
+        n++;
+
+      }
+
+      cycleCount++;
+
+    }
+
+    if (recordStatus && (System.currentTimeMillis() / 1000 > (systemTimeStart + 15))) {
+
+      cycleCount = 0;
+      n = 0;
+      recordStatus = false;
+      SmartDashboard.putString("DB/String 1", "");
+      save(new File(SmartDashboard.getString("DB/String 0", "")));
+
+    }
+  }
+
+  public void save(File file) {
+
+    try {
+
+      ObjectOutputStream oos = new ObjectOutputStream(
+          new BufferedOutputStream(new FileOutputStream("/home/lvuser/" + file)));
+      oos.writeObject(commandValues);
+      oos.close();
+      FileInputStream inputStream = new FileInputStream(file);
+      byte[] buffer = new byte[(int) file.length()];
+      inputStream.read(buffer);
+      URL url = new URL("ftp://anonymous@roborio-" + 834 + "-frc.local/home/lvuser/" + file);
+      URLConnection conn = url.openConnection();
+      conn.getOutputStream().write(buffer);
+      conn.getOutputStream().close();
+      file.delete();
+
+    } catch (Exception e1) {
+
+      e1.printStackTrace();
+
+    }
+
+    for (int i = 0; i < 3; i++) {
+
+      for (int j = 0; j < 1500; j++) {
+
+        commandValues[i][j] = null;
+
+      }
+
+    }
+
   }
 
   @Override
