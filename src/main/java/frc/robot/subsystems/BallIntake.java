@@ -7,14 +7,12 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.commands.StopIntake;
 
 public class BallIntake extends SubsystemBase {
@@ -22,13 +20,13 @@ public class BallIntake extends SubsystemBase {
    * Creates a new BallIntake.
    */
 
-  WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.INTAKE_MOTOR_PORT);
+  WPI_VictorSPX intakeMotor = new WPI_VictorSPX(Constants.INTAKE_MOTOR_PORT);
 
   Joystick j = new Joystick(0);
   Joystick j2 = new Joystick(1);
 
   public BallIntake() {
-
+    intakeMotor.setInverted(Constants.INTAKE_INVERTED);
   }
 
   @Override

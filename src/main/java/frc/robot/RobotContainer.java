@@ -10,11 +10,13 @@ package frc.robot;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -24,28 +26,10 @@ import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
-import frc.robot.commands.DriveMaxSpeed;
-import frc.robot.commands.DriveNormal;
-import frc.robot.commands.DriveSlowSpeed;
-import frc.robot.commands.RunConveyor;
-import frc.robot.commands.RunConveyorSensor;
-import frc.robot.commands.RunConveyorBackward;
-import frc.robot.commands.RunIntake;
-import frc.robot.commands.RunIntakeBackwards;
-import frc.robot.commands.RunShooter;
-import frc.robot.commands.ResetBallCount;
-import frc.robot.commands.StopConveyor;
-import frc.robot.commands.vision.ToggleVision;
-import frc.robot.commands.StopIntake;
+
+import frc.robot.commands.*;
 import frc.robot.commands.autonomous.AimAndShoot;
-import frc.robot.commands.DriveInverted;
-//imautonomousport frc.robot.commands..MoveBack;
-import frc.robot.subsystems.DriveTrain;
-//import frc.robot.commands.SpinCP;
-//import frc.robot.commands.SetCPColor;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.vision.ToggleVision;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -57,51 +41,75 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
   // private final ExampleCommand m_autoCommand = new
   // ExampleCommand(m_exampleSubsystem);
+
   //private final DriveTrain driveTrain = new DriveTrain();
   private final DriveNormal driveNormal = new DriveNormal();
   private final DriveSlowSpeed driveSlowSpeed = new DriveSlowSpeed();
   private final DriveMaxSpeed driveMaxSpeed = new DriveMaxSpeed();
+  private final DriveInverted driveInverted = new DriveInverted();
+
   private final RunIntake runIntake = new RunIntake();
   private final RunIntakeBackwards runIntakeBackwards = new RunIntakeBackwards();
+  private final StopIntake stopIntake = new StopIntake();
+
   private final RunShooter runShooter = new RunShooter();
-  //private final SpinCP spinCP = new SpinCP();
-  //private final SetCPColor setCPColor = new SetCPColor();
+  private final StopShooter stopShooter = new StopShooter();
+
+
   private final RunConveyor runConveyor = new RunConveyor();
   private final RunConveyorSensor runConveyorSensor = new RunConveyorSensor();
-  private final ToggleVision toggleVision = new ToggleVision();
   private final RunConveyorBackward runConveyorBackward = new RunConveyorBackward();
-  private final ResetBallCount resetBallCount = new ResetBallCount();
   private final StopConveyor stopConveyor = new StopConveyor();
-  private final StopIntake stopIntake = new StopIntake();
+
+  private final ToggleVision toggleVision = new ToggleVision();
+  private final ResetBallCount resetBallCount = new ResetBallCount();
   private final AimAndShoot aimAndShoot = new AimAndShoot();
-  private final DriveInverted driveInverted = new DriveInverted();
+  //private final SpinCP spinCP = new SpinCP();
+  //private final SetCPColor setCPColor = new SetCPColor();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
+  //private final XboxController xbox = new XboxController(2);
   private final Joystick launchpad = new Joystick(3);
+   
+  //Joystick Buttons
+  private final JoystickButton
+    // Left Joystick
+    lJoystick1 = new JoystickButton(leftJoystick, 1), lJoystick2 = new JoystickButton(leftJoystick, 2),
+    lJoystick3 = new JoystickButton(leftJoystick, 3), lJoystick4 = new JoystickButton(leftJoystick, 4),
+    lJoystick5 = new JoystickButton(leftJoystick, 5), lJoystick6 = new JoystickButton(leftJoystick, 6),
+    lJoystick7 = new JoystickButton(leftJoystick, 7), lJoystick8 = new JoystickButton(leftJoystick, 8),
+    lJoystick9 = new JoystickButton(leftJoystick, 9), lJoystick10 = new JoystickButton(leftJoystick, 10),
+    lJoystick11 = new JoystickButton(leftJoystick, 11),
 
-  private final JoystickButton leftButton0 = new JoystickButton(leftJoystick, 0);
-  private final JoystickButton leftButton1 = new JoystickButton(leftJoystick, 1);
-  private final JoystickButton leftButton2 = new JoystickButton(leftJoystick, 2);
-  private final JoystickButton leftButton3 = new JoystickButton(leftJoystick, 3);
-  private final JoystickButton leftButton4 = new JoystickButton(leftJoystick, 4);
-  private final JoystickButton leftButton6 = new JoystickButton(leftJoystick, 6);
+    // Right Joystick
+    rJoystick1 = new JoystickButton(rightJoystick, 1), rJoystick2 = new JoystickButton(rightJoystick, 2),
+    rJoystick3 = new JoystickButton(rightJoystick, 3), rJoystick4 = new JoystickButton(rightJoystick, 4),
+    rJoystick5 = new JoystickButton(rightJoystick, 5), rJoystick6 = new JoystickButton(rightJoystick, 6),
+    rJoystick7 = new JoystickButton(rightJoystick, 7), rJoystick8 = new JoystickButton(rightJoystick, 8),
+    rJoystick9 = new JoystickButton(rightJoystick, 9), rJoystick10 = new JoystickButton(rightJoystick, 10),
+    rJoystick11 = new JoystickButton(rightJoystick, 11),
 
-  private final JoystickButton rightButton0 = new JoystickButton(rightJoystick, 0);
-  private final JoystickButton rightButton1 = new JoystickButton(rightJoystick, 1);
-  private final JoystickButton rightButton2 = new JoystickButton(rightJoystick, 2);
-  private final JoystickButton rightButton3 = new JoystickButton(rightJoystick, 3);
-  private final JoystickButton rightButton4 = new JoystickButton(rightJoystick, 4);
-  private final JoystickButton rightButton11 = new JoystickButton(rightJoystick, 11);
-
-  private final JoystickButton BGTL = new JoystickButton(launchpad, 7), BGTM = new JoystickButton(launchpad, 2),
-      BGTR = new JoystickButton(launchpad, 4), BGML = new JoystickButton(launchpad, 1),
-      BGMM = new JoystickButton(launchpad, 6), BGMR = new JoystickButton(launchpad, 3),
-      BGBL = new JoystickButton(launchpad, 10), BGBM = new JoystickButton(launchpad, 9),
-      BGBR = new JoystickButton(launchpad, 8);
+    // Arcade Buttons
+    BGTL = new JoystickButton(launchpad, 7), BGTM = new JoystickButton(launchpad, 2),
+    BGTR = new JoystickButton(launchpad, 4), BGML = new JoystickButton(launchpad, 1),
+    BGMM = new JoystickButton(launchpad, 6), BGMR = new JoystickButton(launchpad, 3),
+    BGBL = new JoystickButton(launchpad, 10), BGBM = new JoystickButton(launchpad, 9),
+    BGBR = new JoystickButton(launchpad, 8);
+/*
+  //Xbox Buttons
+  private final JoystickButton
+    xboxStart = new JoystickButton(xbox, 8), xboxBack = new JoystickButton(xbox, 7),
+    xboxB = new JoystickButton(xbox, 2), xboxA = new JoystickButton(xbox, 1),
+    xboxY = new JoystickButton(xbox, 4), xboxX = new JoystickButton(xbox, 3),
+    xboxLB = new JoystickButton(xbox, 5), xboxRB = new JoystickButton(xbox, 6),
+    xboxLJB = new JoystickButton(xbox, 9);
+*/
+  // Triggers
+    // xbox.getBumperPressed(GenericHID.Hand.kLeft);
+    // xbox.getBumperPressed(GenericHID.Hand.kRight);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -134,24 +142,36 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    //rightButton3.whenPressed(driveMaxSpeed);
-    //leftButton3.whenHeld(runIntake);
-    rightButton2.whenPressed(driveMaxSpeed);
-    leftButton1.whenPressed(driveSlowSpeed);
-    rightButton1.whenPressed(driveNormal);
-    BGTL.toggleWhenPressed(runIntake);
-    BGTM.toggleWhenPressed(runConveyor);
-    //rightButton4.whenPressed(spinCP);
-    //leftButton4.whenPressed(setCPColor);
-    //rightButton11.toggleWhenPressed(runShooter);
-    //leftButton6.whenPressed(runIntake);
-    //rightButton3.whenHeld(runConveyor);
-    BGTR.toggleWhenPressed(runShooter);
-    rightButton3.toggleWhenPressed(runConveyorSensor);
-    BGML.toggleWhenPressed(runConveyorBackward);
-    BGML.toggleWhenPressed(runIntakeBackwards);
-    BGMR.whenPressed(toggleVision);
+    lJoystick1.whenPressed(driveSlowSpeed);
+    //lJoystick2.whenPressed();
+    //lJoystick3.whenPressed();
 
+    rJoystick1.whenPressed(driveNormal);
+    rJoystick2.whenPressed(driveMaxSpeed);
+    //rJoystick3.whenPressed();
+
+    BGTL.whenPressed(runShooter);
+    BGTM.whenPressed(stopShooter);
+    //BGTR.whenPressed();
+    
+    BGML.whenPressed(runConveyor);
+    BGMM.whenPressed(stopConveyor);
+    BGMR.whenPressed(runConveyorBackward);
+    
+    BGBL.whenPressed(runIntakeBackwards);
+    BGBM.whenPressed(runIntake);
+    //BGBR.whenPressed();
+/*
+    //xboxStart.whileHeld();
+    //xboxBack.whileHeld();
+    //xboxB.whileHeld();
+    //xboxA.whileHeld();
+    //xboxY.whileHeld();
+    //xboxX.whileHeld();
+    xboxLB.whileHeld(runIntakeBackwards);
+    xboxRB.whileHeld(runIntake);
+    //xboxLJB.whileHeld();
+*/
   }
 
   /**

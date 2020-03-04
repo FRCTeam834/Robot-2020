@@ -7,23 +7,23 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
-import frc.robot.Robot;
 
 public class Conveyor extends SubsystemBase {
   /**
    * Creates a new Conveyor.
    */
-  WPI_TalonSRX conveyorMotor = new WPI_TalonSRX(Constants.CONVEYOR_MOTOR);
+  WPI_VictorSPX conveyorMotor = new WPI_VictorSPX(Constants.CONVEYOR_MOTOR_PORT);
   DigitalInput bottomSensor = new DigitalInput(Constants.BALL_SENSOR_PORT);
   DigitalInput topSensor = new DigitalInput(Constants.EMPTY_SENSOR_PORT);
 
   public Conveyor() {
-    //setDefaultCommand(new StopConveyor());
+    conveyorMotor.setInverted(Constants.CONVEYOR_INVERTED);
   }
 
   @Override

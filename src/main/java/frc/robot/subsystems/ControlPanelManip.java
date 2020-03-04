@@ -6,18 +6,19 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.ColorSensorV3;
-import frc.robot.Constants;
-import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj.I2C;
+/*
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
-//import frc.robot.commands.PrintColor;
-//import frc.robot.commands.StopCPManip;
-/*
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;;
+import com.revrobotics.ColorSensorV3;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.I2C;
+
+import frc.robot.commands.PrintColor;
+import frc.robot.commands.StopCPManip;
+import frc.robot.Constants;
 
 //https://first.wpi.edu/FRC/roborio/development/docs/java/edu/wpi
 //https://github.com/REVrobotics/Color-Sensor-v3-Examples/tree/master/Java/Color%20Match
@@ -27,9 +28,11 @@ public class ControlPanelManip extends SubsystemBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
-  //WPI_TalonSRX cPWheel = new WPI_TalonSRX(Constants.CONTROL_PANEL_MOTOR_PORT);
+  WPI_VictorSPX cPWheel = new WPI_VictorSPX(Constants.CONTROL_PANEL_MOTOR_PORT);
 
   public ControlPanelManip() {
+    cPWheel.setInverted(Constants.CONTROL_PANEL_INVERTED);
+
     // add wheel colors to the color match thing so it works
     m_colorMatcher.addColorMatch(Constants.RED_TARGET);
     m_colorMatcher.addColorMatch(Constants.BLUE_TARGET);
@@ -68,6 +71,7 @@ public class ControlPanelManip extends SubsystemBase {
 
     // read current color and return it
     return colorSensor.getColor();
+
   }
 
   // determines wheel color
@@ -98,7 +102,9 @@ public class ControlPanelManip extends SubsystemBase {
   }
 
   public void start() {
+
     //cPWheel.set(Constants.CP_WHEEL_SPEED);
+  
   }
 
   public void stop() {

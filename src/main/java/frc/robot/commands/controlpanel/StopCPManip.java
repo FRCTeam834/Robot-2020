@@ -6,10 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands.controlpanel;
-
+/*
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-/* 
+ 
 public class StopCPManip extends CommandBase {
 
   public StopCPManip() {

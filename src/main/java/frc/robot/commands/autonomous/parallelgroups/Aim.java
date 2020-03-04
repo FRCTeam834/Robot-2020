@@ -10,8 +10,6 @@ package frc.robot.commands.autonomous.parallelgroups;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.vision.LookAtGoalX;
 import frc.robot.commands.vision.LookAtGoalY;
-import frc.robot.subsystems.*;
-import frc.robot.commands.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

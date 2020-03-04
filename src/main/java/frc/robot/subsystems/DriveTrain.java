@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
 import frc.robot.Robot;
 
@@ -34,7 +35,7 @@ public class DriveTrain extends SubsystemBase {
   CANSparkMax rightDrive3 = new CANSparkMax(Constants.RIGHT_DRIVE_MOTOR_3, CANSparkMax.MotorType.kBrushless);
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
-  SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, leftDrive3);
+  SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
 
   DifferentialDrive dDrive = new DifferentialDrive(leftDriveGroup, rightDriveGroup);
 
@@ -45,7 +46,9 @@ public class DriveTrain extends SubsystemBase {
 
   public DriveTrain() {
 
-    leftDriveGroup.setInverted(true);
+    leftDriveGroup.setInverted(Constants.LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.RIGHT_DRIVE_INVERTED);
+    
     resetEncoderPosition();
 
   }

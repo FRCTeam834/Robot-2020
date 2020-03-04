@@ -1,10 +1,9 @@
 package frc.robot.createdclasses;
 
 import java.util.ArrayList;
+import java.awt.Point;
 
 import frc.robot.Constants;
-
-import java.awt.Point;
 
 public class Goal {
 

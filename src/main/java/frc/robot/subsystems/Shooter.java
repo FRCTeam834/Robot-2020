@@ -12,8 +12,8 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.commands.StopShooter;
 
 public class Shooter extends SubsystemBase {
@@ -24,10 +24,10 @@ public class Shooter extends SubsystemBase {
   Joystick j = new Joystick(0);
   Joystick j2 = new Joystick(1);
 
-  CANSparkMax shooter = new CANSparkMax(Constants.SHOOTER_BOTTOM_MOTOR, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax shooter = new CANSparkMax(Constants.SHOOTER_MOTOR_PORT, CANSparkMax.MotorType.kBrushless);
 
   public Shooter() {
-
+    shooter.setInverted(Constants.SHOOTER_INVERTED);
   }
 
   @Override
@@ -73,7 +73,9 @@ public class Shooter extends SubsystemBase {
   }
 
   public void stop() {
+
     shooter.set(0);
+  
   }
 
   public void setIntakeToJoystick() {
@@ -83,7 +85,7 @@ public class Shooter extends SubsystemBase {
     System.out.println("BottomSpeedJoystick: " + bottomSpeed);
     bottomSpeed = bottomSpeed + 1;
     bottomSpeed = bottomSpeed / 2;
-    //bottomShooter.set(bottomSpeed);
+    shooter.set(bottomSpeed);
     System.out.println("BottomSpeed: " + shooter.getEncoder().getVelocity());
     /*
     double topSpeed;

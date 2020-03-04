@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
 
 public class GimbalLock extends SubsystemBase {
@@ -18,17 +19,17 @@ public class GimbalLock extends SubsystemBase {
    * Creates a new ShooterPivot.
    */
 
-  WPI_TalonSRX pivot = new WPI_TalonSRX(Constants.SHOOTER_PIVOT_MOTOR);
+  WPI_TalonSRX pivot = new WPI_TalonSRX(Constants.SHOOTER_PIVOT_MOTOR_PORT);
   Encoder e = new Encoder(Constants.GIMBAL_LOCK_PORT1, Constants.GIMBAL_LOCK_PORT2);
 
   public GimbalLock() {
-
+    pivot.setInverted(Constants.SHOOTER_PIVOT_INVERTED);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
+    //setDefaultCommand(new StopPivot);
   }
 
   public void tiltUp(double n) {
