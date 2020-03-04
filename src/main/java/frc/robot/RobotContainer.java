@@ -38,6 +38,7 @@ import frc.robot.commands.StopConveyor;
 import frc.robot.commands.vision.ToggleVision;
 import frc.robot.commands.StopIntake;
 import frc.robot.commands.autonomous.AimAndShoot;
+import frc.robot.commands.DriveInverted;
 //imautonomousport frc.robot.commands..MoveBack;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.commands.SpinCP;
@@ -76,6 +77,7 @@ public class RobotContainer {
   private final StopConveyor stopConveyor = new StopConveyor();
   private final StopIntake stopIntake = new StopIntake();
   private final AimAndShoot aimAndShoot = new AimAndShoot();
+  private final DriveInverted driveInverted = new DriveInverted();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);

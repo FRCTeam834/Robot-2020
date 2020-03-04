@@ -64,6 +64,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public static int ballCount;
+  public static boolean driveInverted;
 
   private int cycleCount = 0;
   private boolean recordStatus = false;
@@ -97,6 +98,7 @@ public class Robot extends TimedRobot {
 
     gameData = "";
     ballCount = 0;
+    driveInverted = false;
 
     m_robotContainer = new RobotContainer();
     //camera = CameraServer.getInstance().startAutomaticCapture();

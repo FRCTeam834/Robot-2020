@@ -33,8 +33,8 @@ public class DriveTrain extends SubsystemBase {
   CANSparkMax rightDrive2 = new CANSparkMax(Constants.RIGHT_DRIVE_MOTOR_2, CANSparkMax.MotorType.kBrushless);
   CANSparkMax rightDrive3 = new CANSparkMax(Constants.RIGHT_DRIVE_MOTOR_3, CANSparkMax.MotorType.kBrushless);
 
-  SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
-  SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+  SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
+  SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, leftDrive3);
 
   DifferentialDrive dDrive = new DifferentialDrive(leftDriveGroup, rightDriveGroup);
 
@@ -133,7 +133,11 @@ public class DriveTrain extends SubsystemBase {
 
   public void setDriveWithMultiplier(double multiplier) {
 
-    setDrive(l.getY() * multiplier, r.getY() * multiplier);
+    if(Robot.driveInverted == false) {
+      setDrive(l.getY() * multiplier, r.getY() * multiplier);
+    } else {
+      setDrive((-r.getY() * multiplier), (-l.getY() * multiplier));
+    }
 
   }
 

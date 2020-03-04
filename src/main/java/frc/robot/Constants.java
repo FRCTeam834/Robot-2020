@@ -39,7 +39,7 @@ public final class Constants {
     //Shooter Constants
     public static final double S_BACKSPIN_RATIO = 4 / 7;
     public static final double S_WHEEL_SPEED = 3600 / 60; //rps
-    public static final double S_WHEEL_VOLTAGE = 10; //Measure pls
+    public static final double S_WHEEL_VOLTAGE = 11.6; //Measure pls
     public static final double S_PROPORTIONAL_CONSTANT = 6;
     public static final double S_INTEGRAL_CONSTANT = 5;
     public static final double S_DERIVATIVE_CONSTANT = 4;
@@ -54,8 +54,8 @@ public final class Constants {
     public static final int GIMBAL_LOCK_PORT2 = 6; //find
     public static final int GIMBAL_LOCK_PORT1 = 9; //do
     public static final double GIMBAL_MULTIPLIER = 5; //be
-    public static final int HOOD_GEAR_RATIO = 18 / 26;
-
+    public static final int HOOD_GEAR_RATIO = 18 / 66;
+  
     //Drive train stuff
     public static final int LEFT_DRIVE_MOTOR_1 = 1;
     public static final int LEFT_DRIVE_MOTOR_2 = 2;
@@ -65,6 +65,7 @@ public final class Constants {
     public static final int RIGHT_DRIVE_MOTOR_3 = 6;
 
     public static final double DRIVE_CONVERSION_FACTOR = 0;
+    public static final double DRIVE_ENCODER_MULTIPLIER = 1; //DO THIS @ WILL
 
     //intake
     public static final int INTAKE_MOTOR_PORT = 7;
