@@ -24,6 +24,36 @@ import edu.wpi.first.wpilibj.util.Units;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    /*
+    CAN ID#		Motor Name
+    1			Left Drive 1
+    ---------------------------
+    2			Left Drive 2
+    ---------------------------
+    3			Left Drive 3
+    ---------------------------
+    4			Right Drive 4
+    ---------------------------
+    5			Right Drive 5
+    ---------------------------
+    6			Right Drive 6
+    ---------------------------
+    7			Intake
+    ---------------------------
+    8			Indexer
+    ---------------------------
+    9			Hood
+    ---------------------------
+    10			Shooter
+    ---------------------------
+    11			Climber
+    ---------------------------
+    12			Wheel 
+    ---------------------------
+    13			PDP
+    --------------------------- 
+    */
+    
     //Control Panel Constants
     public static final int CONTROL_PANEL_MOTOR_PORT = 12; //CAN ID#
     public static final boolean CONTROL_PANEL_INVERTED = false; //Going the wrong way?
