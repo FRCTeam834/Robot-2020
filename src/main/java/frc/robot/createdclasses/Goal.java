@@ -47,7 +47,7 @@ public class Goal {
 
     public double getDistance() {
 
-        return Math.sqrt((Math.pow(Constants.GOAL_DISTANCE, 2) * Constants.GOAL_AREA) / getArea());
+        return Constants.GOAL_DISTANCE * Constants.GOAL_HEIGHT / getHeight();
 
     }
 

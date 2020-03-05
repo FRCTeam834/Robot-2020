@@ -24,7 +24,7 @@ public class RunConveyorSensor extends CommandBase {
 
   public RunConveyorSensor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.conveyor);
+    addRequirements(Robot.conveyor, Robot.ballIntake);
   }
 
   // Called when the command is initially scheduled.
@@ -36,6 +36,7 @@ public class RunConveyorSensor extends CommandBase {
 
     prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
     prevTopSensorStatus = Robot.conveyor.getTopSensor();
+    Robot.ballIntake.start();
 
     Robot.conveyor.stop();
   }
@@ -85,6 +86,8 @@ public class RunConveyorSensor extends CommandBase {
     trueCounter = 0;
     falseCounter = 0;
     isBall = false;
+    Robot.ballIntake.stop();
+    Robot.conveyor.stop();
   }
 
   // Returns true when the command should end.

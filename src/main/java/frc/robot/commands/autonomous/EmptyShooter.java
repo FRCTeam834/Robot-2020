@@ -18,6 +18,10 @@ public class EmptyShooter extends CommandBase {
    * Creates a new EmptyShooter.
    */
 
+  //ok so this variable will say if the sensor was previously covered or uncovered so we can tell when a new ball is passing in front of it.
+  boolean prevBottomSensorStatus;
+  boolean prevTopSensorStatus; //same deal as bottom sensor
+
   private boolean isFinished = false;
 
   public EmptyShooter() {
@@ -28,6 +32,8 @@ public class EmptyShooter extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
+    prevTopSensorStatus = Robot.conveyor.getTopSensor();
 
     isFinished = false;
 
@@ -38,8 +44,24 @@ public class EmptyShooter extends CommandBase {
   public void execute() {
     Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
     Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
-    if (!Robot.conveyor.getTopSensor()) {
+    if (Robot.ballCount == 0) {
       isFinished = true; //may need to remove exclamation point
+    }
+
+    //check if a ball is now entering while previous there was no ball
+    //also checks if a ball is exiting the robot
+    if (Robot.conveyor.getBottomSensor() == true && prevBottomSensorStatus == false) {
+      prevBottomSensorStatus = true;
+      Robot.ballCount++;
+    } else if (Robot.conveyor.getTopSensor() == true && prevTopSensorStatus == false) {
+      prevTopSensorStatus = true;
+      Robot.ballCount--;
+    }
+
+    if (Robot.conveyor.getBottomSensor() == false && prevBottomSensorStatus == true) {
+      prevBottomSensorStatus = false;
+    } else if (Robot.conveyor.getTopSensor() == false && prevTopSensorStatus == true) {
+      prevTopSensorStatus = false;
     }
 
   }

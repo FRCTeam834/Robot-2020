@@ -8,44 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.Robot;
+import frc.robot.Constants;
 
-public class DriveInverted extends CommandBase {
+public class RunClimberUp extends CommandBase {
   /**
-   * Creates a new DriveInverted.
+   * Creates a new RunClimberUp.
    */
-  boolean finished = true;
-
-  public DriveInverted() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public RunClimberUp() {
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (Robot.driveInverted == false) {
-      Robot.driveInverted = true;
-    } else {
-      Robot.driveInverted = false;
-    }
+    Robot.climber.up(Constants.CLIMBER_MOTOR_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    finished = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    finished = false;
+    Robot.climber.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return false;
   }
 }

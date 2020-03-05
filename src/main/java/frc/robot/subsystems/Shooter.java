@@ -75,7 +75,7 @@ public class Shooter extends SubsystemBase {
   public void stop() {
 
     shooter.set(0);
-  
+
   }
 
   public void setIntakeToJoystick() {

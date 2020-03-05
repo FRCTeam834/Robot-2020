@@ -53,7 +53,7 @@ public final class Constants {
     13			PDP
     --------------------------- 
     */
-    
+
     //Control Panel Constants
     public static final int CONTROL_PANEL_MOTOR_PORT = 12; //CAN ID#
     public static final boolean CONTROL_PANEL_INVERTED = false; //Going the wrong way?
@@ -68,7 +68,7 @@ public final class Constants {
 
     //Shooter Constants
     public static final int SHOOTER_MOTOR_PORT = 10; //CAN ID# //SHOOTER MOTOR
-    public static final int SHOOTER_PIVOT_MOTOR_PORT = 9;  //CAN ID# //NEEDS TO BE ADDED STILL
+    public static final int SHOOTER_PIVOT_MOTOR_PORT = 9; //CAN ID# //NEEDS TO BE ADDED STILL
     public static final boolean SHOOTER_INVERTED = false; //Going the wrong way?
     public static final boolean SHOOTER_PIVOT_INVERTED = false; //Going the wrong way?
 
@@ -87,7 +87,7 @@ public final class Constants {
     public static final int GIMBAL_LOCK_PORT2 = 9; //Encoder DIO Port# Get from SRX?
     public static final double GIMBAL_MULTIPLIER = 5; //be
     public static final int HOOD_GEAR_RATIO = 18 / 66;
-  
+
     //Drivetrain Constants
     public static final int LEFT_DRIVE_MOTOR_1 = 1; //CAN ID#
     public static final int LEFT_DRIVE_MOTOR_2 = 2; //CAN ID#
@@ -99,7 +99,7 @@ public final class Constants {
     public static final boolean RIGHT_DRIVE_INVERTED = false; //Going the wrong way?
 
     public static final double DRIVE_CONVERSION_FACTOR = 0;
-    public static final double DRIVE_ENCODER_MULTIPLIER = 1; //DO THIS @ WILL
+    public static final double DRIVE_ENCODER_MULTIPLIER = 0.00086340382; //DO THIS @ WILL
 
     //Intake Constants
     public static final int INTAKE_MOTOR_PORT = 7; //CAN ID#
@@ -111,16 +111,21 @@ public final class Constants {
 
     public static final int BALL_SENSOR_PORT = 0; //DIO Port# //Bottom Sensor
     public static final int EMPTY_SENSOR_PORT = 5; //DIO Port# //Top Sensor
-    
+
     public static final double AUTON_CONVEYOR_SPEED = .5;
 
+    //Climber Constants
+    public static final int CLIMBER_MOTOR_PORT = 11;
+    public static final boolean CLIMBER_INVERTED = false;//if it is going the wrong direction
+    public static final double CLIMBER_MOTOR_SPEED = 1;
     //Auton Constants
     public static final double ksVolts = .185;
     public static final double kvVoltSecondsPerMeter = 2.11;
     public static final double kaVoltSecondsSquaredPerMeter = .571;
     public static final double kPDriveVel = 1.82;
     public static final double kTrackwidthMeters = .64557;
-    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
+            kTrackwidthMeters);
     public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(1);
     public static final double kMaxAccelerationMetersPerSecondSquared = Units.feetToMeters(21);
     public static final double kRamseteB = 2;
@@ -129,9 +134,9 @@ public final class Constants {
     //Vision Constants - Auton
     public static final double TOLERANCE = 10;
     public static final double SPEED_INDEX = .001;
-    public static final double BALL_AREA = 1;
+    public static final double BALL_AREA = 1; // Measure these
     public static final double BALL_DISTANCE = 1;
-    public static final double GOAL_AREA = .00001;
+    public static final double GOAL_HEIGHT = .00001;
     public static final double GOAL_DISTANCE = 1;
 
     //Command IDs for Driver Input

@@ -36,6 +36,7 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Shooter;
 //import frc.robot.subsystems.ControlPanelManip;
 import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -59,6 +60,7 @@ public class Robot extends TimedRobot {
   public UsbCamera camera;
   public static GimbalLock gimbalLock;
   public static NavX navX;
+  public static Climber climber;
 
   private RobotContainer m_robotContainer;
   public static int ballCount;
@@ -145,22 +147,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    // schedule the autonomous command (example)
-
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
-
-  }
-
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-
     if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Driver Input") && running == false) {
 
       running = true;
@@ -184,15 +170,30 @@ public class Robot extends TimedRobot {
 
     }
 
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+    // schedule the autonomous command (example)
+
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
+
+  }
+
+  /**
+   * This function is called periodically during autonomous.
+   */
+  @Override
+  public void autonomousPeriodic() {
+
     if (running) {
 
-      if (o != 0)
-        m = o + 1;
+      m = o;
 
       for (int p = m; (int) commandVals[3][p] != cycleCount; p++)
         o = p;
 
-      for (int p = m; p <= o; p++) {
+      for (int p = m; p < o; p++) {
 
         if ((int) commandVals[1][p] == 11)
           driveTrain.setDrive(.5 * ((Point) commandVals[2][p]).x, .5 * ((Point) commandVals[2][p]).y);
