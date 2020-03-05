@@ -59,6 +59,9 @@ public class RobotContainer {
   private final RunShooter runShooter = new RunShooter();
   private final StopShooter stopShooter = new StopShooter();
 
+  private final RunPivotUp runPivotUp = new RunPivotUp();
+  private final RunPivotDown runPivotDown = new RunPivotDown();
+
   private final RunConveyor runConveyor = new RunConveyor();
   private final RunConveyorSensor runConveyorSensor = new RunConveyorSensor();
   private final RunConveyorBackward runConveyorBackward = new RunConveyorBackward();
@@ -154,14 +157,14 @@ public class RobotContainer {
     //shooter buttons
     //xboxA.whenPressed(aimAndShoot);
     BGTL.toggleWhenPressed(runShooter);
-    BGTR.whileHeld(runConveyorSensor);
+    BGTR.whileHeld(runPivotUp);
 
     //conveyor/intake buttons
     xboxB.toggleWhenPressed(runConveyorSensor);
     xboxLB.whenHeld(runIntakeBackwards);
     xboxRB.whenHeld(runIntake);
     BGMM.whenHeld(runConveyor);
-    BGMR.whenHeld(runConveyorBackward);
+    //BGMR.whenHeld(runConveyorBackward);
     //add things for conveyor that I'm confused about
 
     //climber
@@ -170,11 +173,11 @@ public class RobotContainer {
 
     //BGML.whenPressed();
     //BGMM.whenPressed();
-    //BGMR.whenPressed();
+    BGMR.whileHeld(runPivotDown);
 
     //BGBL.whenPressed();
     //BGBM.whenPressed();
-    //BGBR.whenPressed();
+    //BGBR.whileHeld(runPivotDown);
     
     /*
     //xboxStart.whileHeld();

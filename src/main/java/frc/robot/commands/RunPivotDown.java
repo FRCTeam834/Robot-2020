@@ -22,7 +22,7 @@ public class RunPivotDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.gimbalLock.tiltDown(.1);
+    Robot.gimbalLock.tiltDown(Constants.SHOOTER_PIVOT_SPEED);
 
   }
 

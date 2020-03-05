@@ -22,7 +22,7 @@ public class RunPivotUp extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.gimbalLock.tiltUp(.1);
+    Robot.gimbalLock.tiltUp(Constants.SHOOTER_PIVOT_SPEED);
 
   }
 

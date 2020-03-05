@@ -70,7 +70,8 @@ public final class Constants {
     public static final int SHOOTER_MOTOR_PORT = 10; //CAN ID# //SHOOTER MOTOR
     public static final int SHOOTER_PIVOT_MOTOR_PORT = 9; //CAN ID# //NEEDS TO BE ADDED STILL
     public static final boolean SHOOTER_INVERTED = true; //Going the wrong way?
-    public static final boolean SHOOTER_PIVOT_INVERTED = false; //Going the wrong way?
+    public static final boolean SHOOTER_PIVOT_INVERTED = true; //Going the wrong way?
+    public static final double SHOOTER_PIVOT_SPEED = 0.1;
 
     public static final double S_BACKSPIN_RATIO = 4 / 7;
     public static final double S_WHEEL_SPEED = 3600 / 60; //rps
