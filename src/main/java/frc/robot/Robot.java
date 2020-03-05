@@ -90,6 +90,7 @@ public class Robot extends TimedRobot {
     driveNormal = new DriveNormal();
     shooter = new Shooter();
     gimbalLock = new GimbalLock();
+    climber = new Climber();
 
     ballIntake = new BallIntake();
     //controlPanelManip = new ControlPanelManip();

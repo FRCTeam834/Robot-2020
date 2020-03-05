@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -153,6 +154,7 @@ public class RobotContainer {
     //shooter buttons
     //xboxA.whenPressed(aimAndShoot);
     BGTL.toggleWhenPressed(runShooter);
+    BGTR.whileHeld(runConveyorSensor);
 
     //conveyor/intake buttons
     xboxB.toggleWhenPressed(runConveyorSensor);
@@ -166,13 +168,14 @@ public class RobotContainer {
     BGML.whenHeld(runClimberUp);
     BGBL.whenHeld(runClimberDown);
 
-    //BGML.whenPressed(runConveyor);
-    //BGMM.whenPressed(stopConveyor);
-    //BGMR.whenPressed(runConveyorBackward);
+    //BGML.whenPressed();
+    //BGMM.whenPressed();
+    //BGMR.whenPressed();
 
-    //BGBL.whenPressed(runIntakeBackwards);
-    //BGBM.whenPressed(runIntake);
+    //BGBL.whenPressed();
+    //BGBM.whenPressed();
     //BGBR.whenPressed();
+    
     /*
     //xboxStart.whileHeld();
     //xboxBack.whileHeld();

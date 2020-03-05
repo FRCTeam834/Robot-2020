@@ -42,7 +42,7 @@ public final class Constants {
     ---------------------------
     8			Indexer
     ---------------------------
-    9			Hood
+    9			Pivot
     ---------------------------
     10			Shooter
     ---------------------------
@@ -69,7 +69,7 @@ public final class Constants {
     //Shooter Constants
     public static final int SHOOTER_MOTOR_PORT = 10; //CAN ID# //SHOOTER MOTOR
     public static final int SHOOTER_PIVOT_MOTOR_PORT = 9; //CAN ID# //NEEDS TO BE ADDED STILL
-    public static final boolean SHOOTER_INVERTED = false; //Going the wrong way?
+    public static final boolean SHOOTER_INVERTED = true; //Going the wrong way?
     public static final boolean SHOOTER_PIVOT_INVERTED = false; //Going the wrong way?
 
     public static final double S_BACKSPIN_RATIO = 4 / 7;
@@ -107,7 +107,7 @@ public final class Constants {
 
     //Conveyor Constants
     public static final int CONVEYOR_MOTOR_PORT = 8; //CAN ID#
-    public static final boolean CONVEYOR_INVERTED = false; //Going the wrong way?
+    public static final boolean CONVEYOR_INVERTED = true; //Going the wrong way?
 
     public static final int BALL_SENSOR_PORT = 0; //DIO Port# //Bottom Sensor
     public static final int EMPTY_SENSOR_PORT = 5; //DIO Port# //Top Sensor
@@ -115,9 +115,10 @@ public final class Constants {
     public static final double AUTON_CONVEYOR_SPEED = .5;
 
     //Climber Constants
-    public static final int CLIMBER_MOTOR_PORT = 11;
+    public static final int CLIMBER_MOTOR_PORT = 11; //CAN ID#
     public static final boolean CLIMBER_INVERTED = false;//if it is going the wrong direction
     public static final double CLIMBER_MOTOR_SPEED = 1;
+    
     //Auton Constants
     public static final double ksVolts = .185;
     public static final double kvVoltSecondsPerMeter = 2.11;

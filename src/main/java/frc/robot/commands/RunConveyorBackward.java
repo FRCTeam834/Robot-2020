@@ -25,6 +25,7 @@ public class RunConveyorBackward extends CommandBase {
     //called when scheduler runs while this command is scheduled
     @Override
     public void execute() {
+    /*
         if (Robot.conveyor.getBottomSensor() == true && prevBottomSensorStatus == false) {
             Robot.ballCount--;
             prevBottomSensorStatus = true;
@@ -35,7 +36,7 @@ public class RunConveyorBackward extends CommandBase {
         if (Robot.ballCount == 0) {
             isFinished = true;
         }
-
+    */
     }
 
     @Override
