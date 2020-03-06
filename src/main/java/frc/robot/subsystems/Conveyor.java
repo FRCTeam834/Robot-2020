@@ -22,6 +22,7 @@ public class Conveyor extends SubsystemBase {
   DigitalInput bottomSensor = new DigitalInput(Constants.BALL_SENSOR_PORT);
   DigitalInput topSensor = new DigitalInput(Constants.EMPTY_SENSOR_PORT);
 
+  
   public Conveyor() {
     conveyorMotor.setInverted(Constants.CONVEYOR_INVERTED);
   }
