@@ -158,6 +158,7 @@ public class RobotContainer {
     //xboxA.whenPressed(aimAndShoot);
     BGTL.toggleWhenPressed(runShooter);
     BGTR.whileHeld(runPivotUp);
+    BGMR.whileHeld(runPivotDown);
 
     //conveyor/intake buttons
     xboxB.toggleWhenPressed(runConveyorSensor);
@@ -173,7 +174,7 @@ public class RobotContainer {
 
     //BGML.whenPressed();
     //BGMM.whenPressed();
-    BGMR.whileHeld(runPivotDown);
+    //BGMR.whileHeld(runPivotUp);
 
     //BGBL.whenPressed();
     //BGBM.whenPressed();
