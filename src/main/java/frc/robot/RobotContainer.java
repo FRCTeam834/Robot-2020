@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -57,6 +58,9 @@ public class RobotContainer {
 
   private final RunShooter runShooter = new RunShooter();
   private final StopShooter stopShooter = new StopShooter();
+
+  private final RunPivotUp runPivotUp = new RunPivotUp();
+  private final RunPivotDown runPivotDown = new RunPivotDown();
 
   private final RunConveyor runConveyor = new RunConveyor();
   private final RunConveyorSensor runConveyorSensor = new RunConveyorSensor();
@@ -152,26 +156,29 @@ public class RobotContainer {
     //shooter buttons
     xboxA.whenPressed(aimAndShoot);
     BGTL.toggleWhenPressed(runShooter);
+    BGTR.whileHeld(runPivotUp);
+    BGMR.whileHeld(runPivotDown);
 
     //conveyor/intake buttons
     xboxB.toggleWhenPressed(runConveyorSensor);
     xboxLB.whenHeld(runIntakeBackwards);
     xboxRB.whenHeld(runIntake);
     BGMM.whenHeld(runConveyor);
-    BGMR.whenHeld(runConveyorBackward);
+    //BGMR.whenHeld(runConveyorBackward);
     //add things for conveyor that I'm confused about
 
     //climber
     BGML.whenHeld(runClimberUp);
     BGBL.whenHeld(runClimberDown);
 
-    //BGML.whenPressed(runConveyor);
-    //BGMM.whenPressed(stopConveyor);
-    //BGMR.whenPressed(runConveyorBackward);
+    //BGML.whenPressed();
+    //BGMM.whenPressed();
+    //BGMR.whileHeld(runPivotUp);
 
-    //BGBL.whenPressed(runIntakeBackwards);
-    //BGBM.whenPressed(runIntake);
-    //BGBR.whenPressed();
+    //BGBL.whenPressed();
+    //BGBM.whenPressed();
+    //BGBR.whileHeld(runPivotDown);
+    
     /*
     //xboxStart.whileHeld();
     //xboxBack.whileHeld();

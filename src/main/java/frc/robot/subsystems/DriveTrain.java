@@ -74,7 +74,7 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     //System.out.println("Turnt: " + Rotation2d.fromDegrees(Robot.navX.getYaw()));
-    System.out.println("Pose: " + dDriveOdometry.getPoseMeters());
+    //System.out.println("Pose: " + dDriveOdometry.getPoseMeters());
     dDriveOdometry.update(Rotation2d.fromDegrees(compassHeading), leftDrive1.getEncoder().getPosition(),
         rightDrive1.getEncoder().getPosition());
     dDrive.setSafetyEnabled(false);

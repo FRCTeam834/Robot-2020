@@ -64,7 +64,7 @@ public class RunConveyorSensor extends CommandBase {
     } else if (isBall == true) {
       trueCounter++;
     }
-
+/*
     if (Robot.conveyor.getBottomSensor() == true && prevBottomSensorStatus == false) {
       prevBottomSensorStatus = true;
       Robot.ballCount++;
@@ -78,6 +78,7 @@ public class RunConveyorSensor extends CommandBase {
     } else if (Robot.conveyor.getTopSensor() == false && prevTopSensorStatus == true) {
       prevTopSensorStatus = false;
     }
+    */
   }
 
   // Called once the command ends or is interrupted.
