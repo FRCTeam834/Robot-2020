@@ -49,7 +49,7 @@ public class RunConveyorSensor extends CommandBase {
     //check if ball blocking sensor, if it's been long enough, start the motor
     // if not, add to counter
     if (isBall == false && falseCounter == 5) {
-      Robot.conveyor.start(.75);
+      Robot.conveyor.start(.6);
       falseCounter = 0;
       trueCounter = 0;
     } else if (isBall == false) {
