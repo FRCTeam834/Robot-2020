@@ -5,51 +5,53 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
-
-import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.Constants;
-import frc.robot.Robot;
+package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.Robot;
+import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.Shooter;
 
-public class RunClimberDown extends CommandBase {
+public class EmptyShooterNoVision extends CommandBase {
   /**
-   * Creates a new RunClimberDown.
+   * Creates a new EmptyShooterNoVision.
    */
-
-boolean finished;
-
-  public RunClimberDown() {
+  double time, speed, timeStart;
+  boolean finished;
+  public EmptyShooterNoVision() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.climber);
+    addRequirements(Robot.shooter, Robot.conveyor);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.climber.down(Constants.CLIMBER_MOTOR_SPEED);
+    time = 3;
+    speed = .75;
+    timeStart = System.currentTimeMillis();
     finished = false;
+    Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
+    Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   if(Robot.climber.getLimitBottom() == true){
-      finished = true;
-    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.climber.stop();
-    //needs to have limit switch so the robot doesn't break itself
+    finished = false;
+    Robot.shooter.stop();
+    Robot.conveyor.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

@@ -7,44 +7,46 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.Constants;
-import frc.robot.Robot;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 
-public class RunClimberDown extends CommandBase {
+public class Brotation extends CommandBase {
   /**
-   * Creates a new RunClimberDown.
+   * Creates a new Brotation.
    */
-
-boolean finished;
-
-  public RunClimberDown() {
+  char direction;
+  double angle;
+  boolean finished;
+  public Brotation() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.climber);
+    addRequirements(Robot.driveTrain);    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.climber.down(Constants.CLIMBER_MOTOR_SPEED);
-    finished = false;
+    if(this.angle < 0){
+      Robot.driveTrain.setDrive(0.5, -0.5);
+    }
+    else {
+      Robot.driveTrain.setDrive(-0.5, 0.5);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   if(Robot.climber.getLimitBottom() == true){
+    if((Robot.navX.getYaw()<= (angle + 3) && Robot.navX.getYaw() >= (angle - 3))) {
       finished = true;
-    }
+    } 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.climber.stop();
-    //needs to have limit switch so the robot doesn't break itself
+    finished = false;
+    Robot.driveTrain.setDrive(0,0);
   }
 
   // Returns true when the command should end.

@@ -26,7 +26,7 @@ public class EmptyShooter extends CommandBase {
 
   public EmptyShooter() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(new Shooter(), new Conveyor());
+    addRequirements(Robot.shooter, Robot.conveyor);
   }
 
   // Called when the command is initially scheduled.

@@ -5,22 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous.autons;
+package frc.robot.commands.autonomous.parallelgroups;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.autonomous.EmptyShooterNoVision;
-import frc.robot.commands.autonomous.ShooterToSpeed;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.DriveForwardDistance;
+import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunConveyorSensor;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class CenterAuto extends SequentialCommandGroup {
+public class DriveAndIntake extends ParallelCommandGroup {
   /**
-   * Creates a new CenterAuto.
+   * Creates a new DriveAndIntake.
    */
-  public CenterAuto() {
+  public DriveAndIntake(double distance) {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
-    super(new ShooterToSpeed(), new EmptyShooterNoVision());
+    // super(new FooCommand(), new BarCommand());super();
+    super(new DriveForwardDistance(distance), new RunConveyorSensor());
   }
 }
