@@ -36,7 +36,7 @@ public class RunConveyorSensor extends CommandBase {
 
     prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
     prevTopSensorStatus = Robot.conveyor.getTopSensor();
-    Robot.ballIntake.start();
+    Robot.ballIntake.start(.5);
 
     Robot.conveyor.stop();
   }

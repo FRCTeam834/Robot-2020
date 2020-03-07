@@ -35,9 +35,9 @@ public class BallIntake extends SubsystemBase {
     setDefaultCommand(new StopIntake());
   }
 
-  public void start() {
+  public void start(double speed) {
 
-    intakeMotor.set(1);
+    intakeMotor.set(speed);
 
   }
 

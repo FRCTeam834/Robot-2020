@@ -65,7 +65,7 @@ public class RobotContainer {
 
   private final ToggleVision toggleVision = new ToggleVision();
   private final ResetBallCount resetBallCount = new ResetBallCount();
-  //private final AimAndShoot aimAndShoot = new AimAndShoot();
+  private final AimAndShoot aimAndShoot = new AimAndShoot();
   private final ShooterToSpeed shooterToSpeed = new ShooterToSpeed();
   private final RunClimberUp runClimberUp = new RunClimberUp();
   private final RunClimberDown runClimberDown = new RunClimberDown();
@@ -120,10 +120,9 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  public ArrayList<Command> getCommands() {
+  public ArrayList<Object> getCommands() {
 
-    ArrayList<Command> t = new ArrayList<Command>();
-    /*
+    ArrayList<Object> t = new ArrayList<Object>();
     t.add(driveNormal);
     t.add(driveMaxSpeed);
     t.add(driveSlowSpeed);
@@ -132,7 +131,7 @@ public class RobotContainer {
     t.add(stopIntake);
     t.add(toggleVision);
     t.add(aimAndShoot);
-    */
+
     return t;
 
   }
@@ -151,7 +150,7 @@ public class RobotContainer {
     lJoystick2.whenPressed(driveInverted);
 
     //shooter buttons
-    //xboxA.whenPressed(aimAndShoot);
+    xboxA.whenPressed(aimAndShoot);
     BGTL.toggleWhenPressed(runShooter);
 
     //conveyor/intake buttons
