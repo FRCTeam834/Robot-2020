@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class RunConveyorBackward extends CommandBase {
-    private boolean prevBottomSensorStatus;
+    //private boolean prevBottomSensorStatus;
     private boolean isFinished = false;
 
     public RunConveyorBackward() {
@@ -17,7 +17,7 @@ public class RunConveyorBackward extends CommandBase {
     @Override
     public void initialize() {
         Robot.conveyor.start(-.75);
-        prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
+        //prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
         isFinished = false;
 
     }

@@ -44,7 +44,7 @@ public class EmptyShooter extends CommandBase {
   public void execute() {
     Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
     Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
-    if (Robot.ballCount == 0) {
+    /*if (Robot.ballCount == 0) {
       isFinished = true; //may need to remove exclamation point
     }
 
@@ -63,6 +63,7 @@ public class EmptyShooter extends CommandBase {
     } else if (Robot.conveyor.getTopSensor() == false && prevTopSensorStatus == true) {
       prevTopSensorStatus = false;
     }
+    */
 
   }
 

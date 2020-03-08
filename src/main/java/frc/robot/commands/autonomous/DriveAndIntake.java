@@ -7,20 +7,20 @@
 
 package frc.robot.commands.autonomous;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.vision.LookAtGoalX;
-import frc.robot.commands.vision.LookAtGoalY;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import frc.robot.commands.DriveForwardDistance;
+import frc.robot.commands.RunConveyorSensor;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AimAndShoot extends SequentialCommandGroup {
+public class DriveAndIntake extends ParallelRaceGroup {
   /**
-   * Creates a new AimAndShoot.
+   * Creates a new DriveAndIntake.
    */
-  public AimAndShoot() {
+  public DriveAndIntake(double distance) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new LookAtGoalX(), new LookAtGoalY(), new ShooterToSpeed(), new EmptyShooterNoVision());
+    super(new DriveForwardDistance(distance), new RunConveyorSensor());
   }
 }

@@ -16,8 +16,8 @@ public class RunConveyor extends CommandBase {
    * Creates a new RunConveyor.
    */
   //ok so this variable will say if the sensor was previously covered or uncovered so we can tell when a new ball is passing in front of it.
-  boolean prevBottomSensorStatus;
-  boolean prevTopSensorStatus; //same deal as bottom sensor
+  //boolean prevBottomSensorStatus;
+ // boolean prevTopSensorStatus; //same deal as bottom sensor
 
   public RunConveyor() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,8 +28,8 @@ public class RunConveyor extends CommandBase {
   @Override
   public void initialize() {
     Robot.conveyor.start(.75);
-    prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
-    prevTopSensorStatus = Robot.conveyor.getTopSensor();
+    //prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
+    //prevTopSensorStatus = Robot.conveyor.getTopSensor();
 
   }
 
@@ -38,7 +38,7 @@ public class RunConveyor extends CommandBase {
   public void execute() {
     //check if a ball is now entering while previous there was no ball
     //also checks if a ball is exiting the robot
-    if (Robot.conveyor.getBottomSensor() == true && prevBottomSensorStatus == false) {
+    /*if (Robot.conveyor.getBottomSensor() == true && prevBottomSensorStatus == false) {
       prevBottomSensorStatus = true;
       Robot.ballCount++;
     } else if (Robot.conveyor.getTopSensor() == true && prevTopSensorStatus == false) {
@@ -51,6 +51,7 @@ public class RunConveyor extends CommandBase {
     } else if (Robot.conveyor.getTopSensor() == false && prevTopSensorStatus == true) {
       prevTopSensorStatus = false;
     }
+    */
 
   }
 

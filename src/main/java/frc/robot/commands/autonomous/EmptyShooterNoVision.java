@@ -5,17 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous.autons;
+package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.Shooter;
 
-public class CenterAuto extends CommandBase {
+public class EmptyShooterNoVision extends CommandBase {
   /**
-   * Creates a new CenterAuto.
+   * Creates a new EmptyShooterNoVision.
    */
-  double startTime, currentTime, timeElapsed;
-  public CenterAuto() {
+  double time, timeStart;
+  boolean finished;
+  public EmptyShooterNoVision() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.shooter, Robot.conveyor);
 
@@ -24,23 +28,31 @@ public class CenterAuto extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    time = 2;
+    timeStart = System.currentTimeMillis();
+    finished = false;
+    Robot.shooter.getMotor().setVoltage(Constants.S_WHEEL_VOLTAGE);
+    Robot.conveyor.start(Constants.AUTON_CONVEYOR_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    if(((System.currentTimeMillis()-timeStart)/1000) > time) {
+      finished = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.shooter.stop();
+    Robot.conveyor.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

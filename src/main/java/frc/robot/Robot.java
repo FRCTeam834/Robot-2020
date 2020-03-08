@@ -72,8 +72,10 @@ public class Robot extends TimedRobot {
   public static Climber climber;
 
   private RobotContainer m_robotContainer;
-  public static int ballCount;
+  
+  //public static int ballCount;
   public static boolean driveInverted;
+  public static boolean yawBackwards;
 
   private int cycleCount = 0;
   private boolean recordStatus = false;
@@ -108,8 +110,9 @@ public class Robot extends TimedRobot {
     EVSNetworkTables = new EVSNetworkTables();
 
     gameData = "";
-    ballCount = 0;
+    //ballCount = 0;
     driveInverted = false;
+    yawBackwards = false;
 
     m_robotContainer = new RobotContainer();
     //camera = CameraServer.getInstance().startAutomaticCapture();
@@ -242,7 +245,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-
+    navX.resetYaw();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -255,6 +258,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
+    SmartDashboard.putNumber("YAW", navX.getYaw());
+    SmartDashboard.putNumber("Right Encoder", driveTrain.getRightEncoderValue());
     if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Record") && !recordStatus) {
       recordStatus = true;
       systemTimeStart = System.currentTimeMillis() / 1000;

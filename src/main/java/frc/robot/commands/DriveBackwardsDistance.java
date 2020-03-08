@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class DriveForwardDistance extends CommandBase {
+public class DriveBackwardsDistance extends CommandBase {
   /**
-   * Creates a new DriveForwardDistance.
+   * Creates a new DriveBackwardsDistance.
    */
   double distance, encoderStart;
   boolean finished;
-  public DriveForwardDistance(double dist) {
+  public DriveBackwardsDistance(double dist) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.driveTrain);
     distance = dist;
@@ -26,16 +26,15 @@ public class DriveForwardDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.driveTrain.resetEncoderPosition();
-    //encoderStart = Robot.driveTrain.getRightEncoderValue();
-    Robot.driveTrain.setDrive(-.2, -.2);
     finished = false;
+    Robot.driveTrain.resetEncoderPosition();
+    Robot.driveTrain.setDrive(.2, .2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(distance <= (-Robot.driveTrain.getRightEncoderValue() * 3.015)) {
+    if(distance <= (Robot.driveTrain.getRightEncoderValue() *3.015)) {
       finished = true;
     }
   }

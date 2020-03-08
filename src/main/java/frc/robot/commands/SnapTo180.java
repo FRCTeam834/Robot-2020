@@ -8,36 +8,54 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
+import java.lang.Math;
 
-public class DriveForwardDistance extends CommandBase {
+public class SnapTo180 extends CommandBase {
   /**
-   * Creates a new DriveForwardDistance.
+   * Creates a new Brotation.
    */
-  double distance, encoderStart;
   boolean finished;
-  public DriveForwardDistance(double dist) {
+  double lMotor, rMotor;
+  public SnapTo180() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.driveTrain);
-    distance = dist;
+    addRequirements(Robot.driveTrain, Robot.navX);    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.driveTrain.resetEncoderPosition();
-    //encoderStart = Robot.driveTrain.getRightEncoderValue();
-    Robot.driveTrain.setDrive(-.2, -.2);
     finished = false;
+    lMotor = 1; 
+    rMotor =1;
+
+    lMotor = 1;
+    rMotor = -1;
+    Robot.driveTrain.setDrive(.25, -.25);
+   /* //start turning robot in correct direction
+    if (Robot.navX.getYaw() < 0) { //if robot to right of 180, turn left
+      Robot.driveTrain.setDrive(-0.5, 0.5);
+      lMotor = -1;
+      rMotor = 1;
+    } else if (Robot.navX.getYaw() >= 0) { //if robot to left of 180, turn right
+      Robot.driveTrain.setDrive(0.5, -0.5);
+      lMotor = 1;
+      rMotor = -1;
+    } 
+    */
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(distance <= (-Robot.driveTrain.getRightEncoderValue() * 3.015)) {
-      finished = true;
-    }
+    if(Math.abs(Robot.navX.getYaw()) >= 165) { // spin slower once close for percision 
+      Robot.driveTrain.setDrive(lMotor*.25, rMotor*.25);
+      if(Math.abs(Robot.navX.getYaw()) >= 175) {
+        //now the that we are facing 180, we can gg ez stop spinning
+        finished = true;
+      }
+     } 
+
   }
 
   // Called once the command ends or is interrupted.

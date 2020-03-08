@@ -88,6 +88,7 @@ public final class Constants {
     public static final int GIMBAL_LOCK_PORT2 = 9; //Encoder DIO Port# Get from SRX?
     public static final double GIMBAL_MULTIPLIER = 5; //Measure 
     public static final int HOOD_GEAR_RATIO = 18 / 66;
+    public static final int HOOD_LIMIT_SWITCH_PORT = 9;
 
     //Drivetrain Constants
     public static final int LEFT_DRIVE_MOTOR_1 = 1; //CAN ID #
@@ -100,7 +101,7 @@ public final class Constants {
     public static final boolean RIGHT_DRIVE_INVERTED = false; //Going the wrong way?
 
     public static final double DRIVE_CONVERSION_FACTOR = 0;
-    public static final double DRIVE_ENCODER_MULTIPLIER = 0.00086340382; //DO THIS @ WILL
+    public static final double DRIVE_ENCODER_MULTIPLIER = 0.00086340382; //multiply this by distance to get required encoder change
 
     //Intake Constants
     public static final int INTAKE_MOTOR_PORT = 7; //CAN ID#
@@ -119,6 +120,7 @@ public final class Constants {
     public static final int CLIMBER_MOTOR_PORT = 11; //CAN ID#
     public static final boolean CLIMBER_INVERTED = false;//if it is going the wrong direction
     public static final double CLIMBER_MOTOR_SPEED = 1;
+    public static final int CLIMBER_LIMIT_SWITCH_PORT = 8;
     
     //Auton Constants
     public static final double ksVolts = .185;
