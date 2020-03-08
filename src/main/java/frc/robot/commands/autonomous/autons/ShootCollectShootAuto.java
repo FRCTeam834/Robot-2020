@@ -27,6 +27,6 @@ public class ShootCollectShootAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     
-    super(new AimAndShoot(), new DriveAndIntake(8),  new DriveForwardDistance(4));
+    super(new AimAndShoot(), new SnapTo180(), new DriveAndIntake(8), new SnapTo0(), new DriveForwardDistance(4), new AimAndShoot());
   }
 }
