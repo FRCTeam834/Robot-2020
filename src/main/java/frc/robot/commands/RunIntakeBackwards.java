@@ -24,7 +24,7 @@ public class RunIntakeBackwards extends CommandBase {
   @Override
   public void initialize() {
 
-    Robot.ballIntake.startBackwards();
+    Robot.ballIntake.start(-.5);
 
   }
 

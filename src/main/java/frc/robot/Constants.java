@@ -81,17 +81,17 @@ public final class Constants {
     public static final double S_DERIVATIVE_CONSTANT = 4;
 
     public static final double AUTON_SHOOTER_SPEED = .7;
-    public static final double ROBOT_HEIGHT = 32.222 / 12;
+    public static final double ROBOT_HEIGHT = 31.75 / 12;
     public static final double WHEEL_CIRCUMFERENCE = 5 * Math.PI / 12;
-    public static final double SHOOTER_MOUTH_WIDTH = 10; //Currently a placeholder best be in feet
+    public static final double SHOOTER_MOUTH_WIDTH = 6.25 / 12; //Currently a placeholder best be in feet
     public static final int GIMBAL_LOCK_PORT1 = 6; //Encoder DIO Port# Get from SRX?
     public static final int GIMBAL_LOCK_PORT2 = 9; //Encoder DIO Port# Get from SRX?
-    public static final double GIMBAL_MULTIPLIER = 5; //be
+    public static final double GIMBAL_MULTIPLIER = 5; //Measure 
     public static final int HOOD_GEAR_RATIO = 18 / 66;
     public static final int HOOD_LIMIT_SWITCH_PORT = 9;
 
     //Drivetrain Constants
-    public static final int LEFT_DRIVE_MOTOR_1 = 1; //CAN ID#
+    public static final int LEFT_DRIVE_MOTOR_1 = 1; //CAN ID #
     public static final int LEFT_DRIVE_MOTOR_2 = 2; //CAN ID#
     public static final int LEFT_DRIVE_MOTOR_3 = 3; //CAN ID#
     public static final int RIGHT_DRIVE_MOTOR_1 = 4; //CAN ID#
@@ -101,7 +101,7 @@ public final class Constants {
     public static final boolean RIGHT_DRIVE_INVERTED = false; //Going the wrong way?
 
     public static final double DRIVE_CONVERSION_FACTOR = 0;
-    public static final double DRIVE_ENCODER_MULTIPLIER = 0.00086340382; //DO THIS @ WILL
+    public static final double DRIVE_ENCODER_MULTIPLIER = 0.00086340382; //multiply this by distance to get required encoder change
 
     //Intake Constants
     public static final int INTAKE_MOTOR_PORT = 7; //CAN ID#

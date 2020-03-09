@@ -8,11 +8,21 @@
 package frc.robot.commands.autonomous.autons;
 
 import frc.robot.commands.autonomous.AimAndShoot;
+<<<<<<< HEAD
 import frc.robot.commands.autonomous.EmptyShooter;
 import frc.robot.commands.autonomous.EmptyShooterNoVision;
 import frc.robot.commands.autonomous.parallelgroups.DriveAndIntake;
 import frc.robot.commands.autonomous.ShooterToSpeed;
 import frc.robot.commands.DriveForwardDistance;
+=======
+import frc.robot.commands.autonomous.DriveAndIntake;
+import frc.robot.commands.autonomous.EmptyShooterNoVision;
+import frc.robot.commands.autonomous.ShooterToSpeed;
+import frc.robot.commands.DriveForwardDistance;
+import frc.robot.commands.ResetYaw;
+import frc.robot.commands.SnapTo0;
+import frc.robot.commands.SnapTo180;
+>>>>>>> master
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -27,6 +37,11 @@ public class ShootCollectShootAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     
+<<<<<<< HEAD
     super(new AimAndShoot(), new SnapTo180(), new DriveAndIntake(8), new SnapTo0(), new DriveForwardDistance(4), new AimAndShoot());
+=======
+    super(new ShooterToSpeed(), new EmptyShooterNoVision(), new SnapTo180(), new DriveAndIntake(204), new SnapTo0(), new DriveForwardDistance(120));
+    //super(new ResetYaw(), new AimAndShoot(), new SnapTo180(), new DriveAndIntake(8), new SnapTo0(), new DriveForwardDistance(4), new AimAndShoot());
+>>>>>>> master
   }
 }

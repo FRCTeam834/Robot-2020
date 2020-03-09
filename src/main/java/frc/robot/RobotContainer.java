@@ -30,7 +30,11 @@ import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConst
 
 import frc.robot.commands.*;
 import frc.robot.commands.autonomous.AimAndShoot;
+import frc.robot.commands.autonomous.EmptyShooterNoVision;
 import frc.robot.commands.autonomous.ShooterToSpeed;
+import frc.robot.commands.autonomous.autons.CenterAutonBackward;
+import frc.robot.commands.autonomous.autons.CenterAutonForward;
+import frc.robot.commands.autonomous.autons.ShootCollectShootAuto;
 import frc.robot.commands.vision.ToggleVision;
 
 /**
@@ -69,12 +73,21 @@ public class RobotContainer {
 
   private final ToggleVision toggleVision = new ToggleVision();
   private final ResetBallCount resetBallCount = new ResetBallCount();
-  //private final AimAndShoot aimAndShoot = new AimAndShoot();
+  private final AimAndShoot aimAndShoot = new AimAndShoot();
   private final ShooterToSpeed shooterToSpeed = new ShooterToSpeed();
   private final RunClimberUp runClimberUp = new RunClimberUp();
   private final RunClimberDown runClimberDown = new RunClimberDown();
   //private final SpinCP spinCP = new SpinCP();
   //private final SetCPColor setCPColor = new SetCPColor();
+  private final CenterAutonBackward centerAutonBackward = new CenterAutonBackward();
+  private final DriveBackwardsDistance driveBackwardsDistance = new DriveBackwardsDistance(12); 
+  private final EmptyShooterNoVision emptyShooterNoVision = new EmptyShooterNoVision();
+  private final ResetYaw resetYaw = new ResetYaw();
+  private final SnapTo0 snapTo0 = new SnapTo0();
+  private final SnapTo180 snapTo180 = new SnapTo180();
+  private final DriveForwardDistance driveForwardDistance = new DriveForwardDistance(69);
+  private final CenterAutonForward centerAutonForward = new CenterAutonForward();
+  private final ShootCollectShootAuto shootCollectShootAuto = new ShootCollectShootAuto();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
@@ -124,10 +137,9 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  public ArrayList<Command> getCommands() {
+  public ArrayList<Object> getCommands() {
 
-    ArrayList<Command> t = new ArrayList<Command>();
-    /*
+    ArrayList<Object> t = new ArrayList<Object>();
     t.add(driveNormal);
     t.add(driveMaxSpeed);
     t.add(driveSlowSpeed);
@@ -136,7 +148,7 @@ public class RobotContainer {
     t.add(stopIntake);
     t.add(toggleVision);
     t.add(aimAndShoot);
-    */
+
     return t;
 
   }
@@ -155,10 +167,12 @@ public class RobotContainer {
     lJoystick2.whenPressed(driveInverted);
 
     //shooter buttons
-    //xboxA.whenPressed(aimAndShoot);
+    xboxA.whenPressed(aimAndShoot);
     BGTL.toggleWhenPressed(runShooter);
-    BGTR.whileHeld(runPivotUp);
-    BGMR.whileHeld(runPivotDown);
+    //BGTR.whileHeld(runPivotUp);
+    //BGMR.whileHeld(runPivotDown);
+    BGTR.whenPressed(snapTo0);
+    BGMR.whenPressed(snapTo180);
 
     //conveyor/intake buttons
     xboxB.toggleWhenPressed(runConveyorSensor);
@@ -167,9 +181,14 @@ public class RobotContainer {
     BGMM.whenHeld(runConveyor);
     //BGMR.whenHeld(runConveyorBackward);
     //add things for conveyor that I'm confused about
+    xboxX.whenPressed(shootCollectShootAuto);
+    xboxY.whenPressed(centerAutonBackward);
 
     //climber
     BGML.whenHeld(runClimberUp);
+    //BGML.whenPressed(resetYaw);
+    //BGBL.whenPressed(emptyShooterNoVision);
+
     BGBL.whenHeld(runClimberDown);
 
     //BGML.whenPressed();

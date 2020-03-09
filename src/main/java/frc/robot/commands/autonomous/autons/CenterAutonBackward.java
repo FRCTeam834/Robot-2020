@@ -5,22 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous.parallelgroups;
+package frc.robot.commands.autonomous.autons;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.vision.LookAtGoalX;
-import frc.robot.commands.vision.LookAtGoalY;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.DriveBackwardsDistance;
+import frc.robot.commands.autonomous.EmptyShooterNoVision;
+import frc.robot.commands.autonomous.ShooterToSpeed;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class Aim extends ParallelCommandGroup {
+public class CenterAutonBackward extends SequentialCommandGroup {
   /**
-   * Creates a new Aim.
+   * Creates a new CenterAuto.
    */
-  public Aim() {
+  public CenterAutonBackward() {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());super();
-    super(new LookAtGoalX(), new LookAtGoalY());
+    // super(new FooCommand(), new BarCommand());
+    super(new ShooterToSpeed(), new EmptyShooterNoVision(), new DriveBackwardsDistance(42));
   }
 }

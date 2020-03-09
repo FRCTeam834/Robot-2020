@@ -21,13 +21,22 @@ import org.opencv.core.Point;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-
+import frc.robot.commands.DriveMaxSpeed;
 import frc.robot.commands.DriveNormal;
+import frc.robot.commands.DriveSlowSpeed;
+import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunIntakeBackwards;
+import frc.robot.commands.StopIntake;
+import frc.robot.commands.autonomous.AimAndShoot;
+import frc.robot.commands.vision.ToggleVision;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.EVSNetworkTables;
@@ -63,8 +72,10 @@ public class Robot extends TimedRobot {
   public static Climber climber;
 
   private RobotContainer m_robotContainer;
-  public static int ballCount;
+  
+  //public static int ballCount;
   public static boolean driveInverted;
+  public static boolean yawBackwards;
 
   private int cycleCount = 0;
   private boolean recordStatus = false;
@@ -75,6 +86,7 @@ public class Robot extends TimedRobot {
   private int m = 0;
   private int o = 0;
   private Object[][] commandVals = new Object[3][1500];
+  private XboxController boxX = new XboxController(2);
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -98,8 +110,9 @@ public class Robot extends TimedRobot {
     EVSNetworkTables = new EVSNetworkTables();
 
     gameData = "";
-    ballCount = 0;
+    //ballCount = 0;
     driveInverted = false;
+    yawBackwards = false;
 
     m_robotContainer = new RobotContainer();
     //camera = CameraServer.getInstance().startAutomaticCapture();
@@ -206,19 +219,19 @@ public class Robot extends TimedRobot {
           driveTrain.setDrive(.25 * ((Point) commandVals[2][p]).x, .25 * ((Point) commandVals[2][p]).y);
 
         if ((int) commandVals[1][p] == 31)
-          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(3));
+          CommandScheduler.getInstance().schedule((RunIntake) m_robotContainer.getCommands().get(3));
 
         if ((int) commandVals[1][p] == 32)
-          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(4));
+          CommandScheduler.getInstance().schedule((RunIntakeBackwards) m_robotContainer.getCommands().get(4));
 
         if ((int) commandVals[1][p] == 33)
-          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(5));
+          CommandScheduler.getInstance().schedule((StopIntake) m_robotContainer.getCommands().get(5));
 
         if ((int) commandVals[1][p] == 41)
-          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(6));
+          CommandScheduler.getInstance().schedule((ToggleVision) m_robotContainer.getCommands().get(6));
 
         if ((int) commandVals[1][p] == 42)
-          CommandScheduler.getInstance().schedule(m_robotContainer.getCommands().get(7));
+          CommandScheduler.getInstance().schedule((AimAndShoot) m_robotContainer.getCommands().get(7));
 
       }
 
@@ -232,7 +245,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-
+    navX.resetYaw();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -245,6 +258,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
+    SmartDashboard.putNumber("YAW", navX.getYaw());
+    SmartDashboard.putNumber("Right Encoder", driveTrain.getRightEncoderValue());
     if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Record") && !recordStatus) {
       recordStatus = true;
       systemTimeStart = System.currentTimeMillis() / 1000;
@@ -253,7 +268,7 @@ public class Robot extends TimedRobot {
       cycleCount = 0;
     }
     if (recordStatus) {
-      if (!m_robotContainer.getCommands().get(0).isFinished()) {
+      if (!((DriveNormal) m_robotContainer.getCommands().get(0)).isFinished()) {
 
         commandValues[1][n] = 11;
         commandValues[2][n] = new Point(driveTrain.getJoystickL().getY(), driveTrain.getJoystickR().getY());
@@ -261,7 +276,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(1).isFinished()) {
+      if (!((DriveMaxSpeed) m_robotContainer.getCommands().get(1)).isFinished()) {
 
         commandValues[1][n] = 12;
         commandValues[2][n] = new Point(driveTrain.getJoystickL().getY(), driveTrain.getJoystickR().getY());
@@ -269,7 +284,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(2).isFinished()) {
+      if (!((DriveSlowSpeed) m_robotContainer.getCommands().get(2)).isFinished()) {
 
         commandValues[1][n] = 13;
         commandValues[2][n] = new Point(driveTrain.getJoystickL().getY(), driveTrain.getJoystickR().getY());
@@ -277,7 +292,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(3).isFinished()) {
+      if (!((RunIntake) m_robotContainer.getCommands().get(3)).isFinished()) {
 
         commandValues[1][n] = 31;
         commandValues[2][n] = true;
@@ -285,7 +300,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(4).isFinished()) {
+      if (!((RunIntakeBackwards) m_robotContainer.getCommands().get(4)).isFinished()) {
 
         commandValues[1][n] = 32;
         commandValues[2][n] = true;
@@ -293,7 +308,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(5).isFinished()) {
+      if (!((StopIntake) m_robotContainer.getCommands().get(5)).isFinished()) {
 
         commandValues[1][n] = 33;
         commandValues[2][n] = true;
@@ -301,7 +316,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(6).isFinished()) {
+      if (!((ToggleVision) m_robotContainer.getCommands().get(6)).isFinished()) {
 
         commandValues[1][n] = 41;
         commandValues[2][n] = true;
@@ -309,7 +324,7 @@ public class Robot extends TimedRobot {
         n++;
 
       }
-      if (!m_robotContainer.getCommands().get(7).isFinished()) {
+      if (boxX.getAButton()) {
 
         commandValues[1][n] = 42;
         commandValues[2][n] = true;

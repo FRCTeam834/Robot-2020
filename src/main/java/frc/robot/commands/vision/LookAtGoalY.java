@@ -53,9 +53,9 @@ public class LookAtGoalY extends CommandBase {
 
     }
 
-    double distance = goal.getDistance() * Math.sin(g.getEncoder().getDistance() * Constants.HOOD_GEAR_RATIO) / 12; //The 5 is a placeholder for shooter angle
+    double distance = goal.getDistance() * Math.sin(g.getEncoder()) / 12; //The 5 is a placeholder for shooter angle
     double v = Constants.S_WHEEL_SPEED * Constants.WHEEL_CIRCUMFERENCE;
-    double phi = g.getEncoder().getDistance() * Constants.HOOD_GEAR_RATIO;
+    double phi = g.getEncoder();
     double a = Math.pow(distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(phi), 2) / (v);
     double b = distance - Constants.SHOOTER_MOUTH_WIDTH * Math.sin(phi);
     double c = 98.25 / 12 - Constants.SHOOTER_MOUTH_WIDTH * Math.cos(phi);
@@ -69,13 +69,10 @@ public class LookAtGoalY extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (g.getEncoder().getDistance() * Constants.HOOD_GEAR_RATIO * Constants.HOOD_GEAR_RATIO < angleRequirement) {
-      g.tiltUp(
-          Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder().getDistance() * Constants.HOOD_GEAR_RATIO));
-    } else if (g.getEncoder().getDistance() * Constants.HOOD_GEAR_RATIO > angleRequirement)
-      ;
-    g.tiltDown(
-        Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder().getDistance() * Constants.HOOD_GEAR_RATIO));
+    if (g.getEncoder() < angleRequirement) {
+      g.tiltUp(Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder()));
+    } else if (g.getEncoder() > angleRequirement)
+      g.tiltDown(Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder()));
   }
 
   // Called once the command ends or is interrupted.

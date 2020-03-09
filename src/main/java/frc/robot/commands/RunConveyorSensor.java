@@ -36,7 +36,7 @@ public class RunConveyorSensor extends CommandBase {
 
     prevBottomSensorStatus = Robot.conveyor.getBottomSensor();
     prevTopSensorStatus = Robot.conveyor.getTopSensor();
-    Robot.ballIntake.start();
+    Robot.ballIntake.start(.5);
 
     Robot.conveyor.stop();
   }
@@ -48,8 +48,9 @@ public class RunConveyorSensor extends CommandBase {
 
     //check if ball blocking sensor, if it's been long enough, start the motor
     // if not, add to counter
-    if (isBall == false && falseCounter == 5) {
+    if (isBall == false) {
       Robot.conveyor.start(.75);
+      Robot.ballIntake.stop();
       falseCounter = 0;
       trueCounter = 0;
     } else if (isBall == false) {
@@ -57,8 +58,9 @@ public class RunConveyorSensor extends CommandBase {
     }
     //check if sensor is clear, if it's been long enough, stop the motor
     // if not, add to counter
-    else if (isBall == true && trueCounter == 5) {
+    else if (isBall == true && trueCounter == 3) {
       Robot.conveyor.stop();
+      Robot.ballIntake.start(.5);
       trueCounter = 0;
       falseCounter = 0;
     } else if (isBall == true) {

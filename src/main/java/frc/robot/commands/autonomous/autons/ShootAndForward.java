@@ -8,19 +8,21 @@
 package frc.robot.commands.autonomous.autons;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.autonomous.EmptyShooterNoVision;
-import frc.robot.commands.autonomous.ShooterToSpeed;
+import frc.robot.commands.DriveForwardDistance;
+import frc.robot.commands.ResetYaw;
+import frc.robot.commands.SnapTo0;
+import frc.robot.commands.autonomous.AimAndShoot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class CenterAuto extends SequentialCommandGroup {
+public class ShootAndForward extends SequentialCommandGroup {
   /**
-   * Creates a new CenterAuto.
+   * Creates a new ShootAndForward.
    */
-  public CenterAuto() {
+  public ShootAndForward() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new ShooterToSpeed(), new EmptyShooterNoVision());
+    super(new AimAndShoot(), new ResetYaw(), new SnapTo0(), new DriveForwardDistance(69));
   }
 }

@@ -17,9 +17,13 @@ public class RunClimberDown extends CommandBase {
   /**
    * Creates a new RunClimberDown.
    */
+<<<<<<< HEAD
 
 boolean finished;
 
+=======
+  boolean finished;
+>>>>>>> master
   public RunClimberDown() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
@@ -28,15 +32,29 @@ boolean finished;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.climber.down(Constants.CLIMBER_MOTOR_SPEED);
     finished = false;
+    if(!Robot.climber.getLimitBottom()) {
+    Robot.climber.down(Constants.CLIMBER_MOTOR_SPEED);
+<<<<<<< HEAD
+    finished = false;
+=======
+    } else {
+    finished = true;
+    }
+>>>>>>> master
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+<<<<<<< HEAD
    if(Robot.climber.getLimitBottom() == true){
       finished = true;
+=======
+    if(Robot.climber.getLimitBottom() == true) {
+      finished = true;
+      Robot.climber.stop();
+>>>>>>> master
     }
   }
 
@@ -44,7 +62,7 @@ boolean finished;
   @Override
   public void end(boolean interrupted) {
     Robot.climber.stop();
-    //needs to have limit switch so the robot doesn't break itself
+    
   }
 
   // Returns true when the command should end.

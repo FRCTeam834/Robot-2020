@@ -52,7 +52,7 @@ public class Goal {
     }
 
     public double getHeight() {
-
+        System.out.println(2 * centerX - endY);
         return 2 * (centerX - endY);
 
     }

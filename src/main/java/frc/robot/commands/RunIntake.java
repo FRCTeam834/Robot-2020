@@ -24,7 +24,7 @@ public class RunIntake extends CommandBase {
   @Override
   public void initialize() {
 
-    Robot.ballIntake.start();
+    Robot.ballIntake.start(1);
 
   }
 
