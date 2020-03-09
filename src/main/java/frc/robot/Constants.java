@@ -86,7 +86,7 @@ public final class Constants {
     public static final double SHOOTER_MOUTH_WIDTH = 6.25 / 12; //Currently a placeholder best be in feet
     public static final int GIMBAL_LOCK_PORT1 = 6; //Encoder DIO Port# Get from SRX?
     public static final int GIMBAL_LOCK_PORT2 = 9; //Encoder DIO Port# Get from SRX?
-    public static final double GIMBAL_MULTIPLIER = 5; //Measure 
+    public static final double GIMBAL_MULTIPLIER = 0.001; //Measure 
     public static final int HOOD_GEAR_RATIO = 18 / 66;
     public static final int HOOD_LIMIT_SWITCH_PORT = 9;
 

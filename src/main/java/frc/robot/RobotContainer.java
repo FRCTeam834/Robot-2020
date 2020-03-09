@@ -35,7 +35,7 @@ import frc.robot.commands.autonomous.ShooterToSpeed;
 import frc.robot.commands.autonomous.autons.CenterAutonBackward;
 import frc.robot.commands.autonomous.autons.CenterAutonForward;
 import frc.robot.commands.autonomous.autons.ShootCollectShootAuto;
-import frc.robot.commands.vision.ToggleVision;
+import frc.robot.commands.vision.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -50,7 +50,7 @@ public class RobotContainer {
   // private final ExampleCommand m_autoCommand = new
   // ExampleCommand(m_exampleSubsystem);
 
-  //private final DriveTrain driveTrai DriveTrain();
+  // private final DriveTrain driveTrai DriveTrain();
   private final DriveNormal driveNormal = new DriveNormal();
   private final DriveSlowSpeed driveSlowSpeed = new DriveSlowSpeed();
   private final DriveMaxSpeed driveMaxSpeed = new DriveMaxSpeed();
@@ -77,10 +77,10 @@ public class RobotContainer {
   private final ShooterToSpeed shooterToSpeed = new ShooterToSpeed();
   private final RunClimberUp runClimberUp = new RunClimberUp();
   private final RunClimberDown runClimberDown = new RunClimberDown();
-  //private final SpinCP spinCP = new SpinCP();
-  //private final SetCPColor setCPColor = new SetCPColor();
+  // private final SpinCP spinCP = new SpinCP();
+  // private final SetCPColor setCPColor = new SetCPColor();
   private final CenterAutonBackward centerAutonBackward = new CenterAutonBackward();
-  private final DriveBackwardsDistance driveBackwardsDistance = new DriveBackwardsDistance(12); 
+  private final DriveBackwardsDistance driveBackwardsDistance = new DriveBackwardsDistance(12);
   private final EmptyShooterNoVision emptyShooterNoVision = new EmptyShooterNoVision();
   private final ResetYaw resetYaw = new ResetYaw();
   private final SnapTo0 snapTo0 = new SnapTo0();
@@ -88,6 +88,10 @@ public class RobotContainer {
   private final DriveForwardDistance driveForwardDistance = new DriveForwardDistance(69);
   private final CenterAutonForward centerAutonForward = new CenterAutonForward();
   private final ShootCollectShootAuto shootCollectShootAuto = new ShootCollectShootAuto();
+
+  private final LookAtGoalX lookAtGoalX = new LookAtGoalX();
+  private final LookAtGoalY lookAtGoalY = new LookAtGoalY();
+  private final LookAtPowerCell lookAtPowerCell = new LookAtPowerCell();
 
   private final Joystick leftJoystick = new Joystick(0);
   private final Joystick rightJoystick = new Joystick(1);
@@ -168,6 +172,8 @@ public class RobotContainer {
 
     //shooter buttons
     xboxA.whenPressed(aimAndShoot);
+    xboxBack.whenPressed(lookAtGoalX);
+    xboxStart.whenPressed(lookAtGoalY);
     BGTL.toggleWhenPressed(runShooter);
     //BGTR.whileHeld(runPivotUp);
     //BGMR.whileHeld(runPivotDown);
