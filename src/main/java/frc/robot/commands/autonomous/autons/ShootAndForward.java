@@ -23,6 +23,6 @@ public class ShootAndForward extends SequentialCommandGroup {
   public ShootAndForward() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new AimAndShoot(), new SnapTo0(), new DriveForwardDistance(69));
+    super(new AimAndShoot(), new ResetYaw(), new SnapTo0(), new DriveForwardDistance(69));
   }
 }
