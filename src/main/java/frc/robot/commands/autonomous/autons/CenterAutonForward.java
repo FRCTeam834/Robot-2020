@@ -22,6 +22,6 @@ public class CenterAutonForward extends SequentialCommandGroup {
   public CenterAutonForward() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-     super(new ShooterToSpeed(), new EmptyShooterNoVision(), new DriveForwardDistance(69));
+     super(new ShooterToSpeed(), new EmptyShooterNoVision(), new DriveForwardDistance(.5, 69));
   }
 }

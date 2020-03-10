@@ -89,6 +89,7 @@ public final class Constants {
     public static final double GIMBAL_MULTIPLIER = 5; //Measure 
     public static final int HOOD_GEAR_RATIO = 18 / 66;
     public static final int HOOD_LIMIT_SWITCH_PORT = 9;
+    public static final double ANGLE_TOLERANCE = 2 * Math.PI/120;
 
     //Drivetrain Constants
     public static final int LEFT_DRIVE_MOTOR_1 = 1; //CAN ID #
@@ -140,8 +141,8 @@ public final class Constants {
     public static final double SPEED_INDEX = .001;
     public static final double BALL_AREA = 1; // Measure these
     public static final double BALL_DISTANCE = 1;
-    public static final double GOAL_HEIGHT = .00001;
-    public static final double GOAL_DISTANCE = 1;
+    public static final double GOAL_HEIGHT = 110;
+    public static final double GOAL_DISTANCE = 144; //12 feet From release
 
     //Command IDs for Driver Input
     //First Digit = Main Subsystem Number

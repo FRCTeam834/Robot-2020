@@ -37,6 +37,7 @@ import frc.robot.commands.RunIntakeBackwards;
 import frc.robot.commands.StopIntake;
 import frc.robot.commands.autonomous.AimAndShoot;
 import frc.robot.commands.vision.ToggleVision;
+import frc.robot.createdclasses.Goal;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.EVSNetworkTables;
@@ -87,6 +88,7 @@ public class Robot extends TimedRobot {
   private int o = 0;
   private Object[][] commandVals = new Object[3][1500];
   private XboxController boxX = new XboxController(2);
+  private Goal goal;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -250,6 +252,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
+    
+
   }
 
   /**
@@ -260,6 +264,28 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("YAW", navX.getYaw());
     SmartDashboard.putNumber("Right Encoder", driveTrain.getRightEncoderValue());
+    try {
+
+      if (Robot.EVSNetworkTables.getGoalArray().get(0).size() != 0) {
+
+        goal = new Goal(Robot.EVSNetworkTables.getGoalArray().get(0));
+
+      } else {
+
+        System.out.println("No Goal Found");
+
+      }
+
+    } catch (Exception e) {
+
+    }
+    try {
+    SmartDashboard.putNumber("goal height", goal.getHeight());
+    }
+    catch (Exception e){
+      e.printStackTrace();
+    }
+    
     if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Record") && !recordStatus) {
       recordStatus = true;
       systemTimeStart = System.currentTimeMillis() / 1000;
@@ -346,6 +372,9 @@ public class Robot extends TimedRobot {
       save(new File(SmartDashboard.getString("DB/String 0", "")));
 
     }
+
+   
+
   }
 
   public void save(File file) {

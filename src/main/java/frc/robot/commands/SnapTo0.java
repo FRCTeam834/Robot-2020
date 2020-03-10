@@ -27,7 +27,7 @@ public class SnapTo0 extends CommandBase {
     finished = false;
     lMotor = -1; 
     rMotor = 1;
-    Robot.driveTrain.setDrive(-0.25, 0.25);
+    Robot.driveTrain.setDrive(-0.5, 0.5);
 
     /*
     //start turning robot in correct direction

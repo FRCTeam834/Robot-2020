@@ -22,6 +22,7 @@ public class LookAtGoalY extends CommandBase {
   private double angleRequirement = 0;
   private boolean isFinished = false;
   private Goal goal;
+  private boolean over = false;
 
   public LookAtGoalY() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -63,16 +64,21 @@ public class LookAtGoalY extends CommandBase {
     if (angleRequirement < 0)
       angleRequirement = 2 * (Math.atan(b + Math.sqrt(-Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) / (a + c))));
     angleRequirement = angleRequirement % (2 * Math.PI);
+    angleRequirement -= Math.PI/2;
+    if(angleRequirement < g.getEncoder()) over = false;
+    if(angleRequirement > g.getEncoder()) over = true;
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (g.getEncoder() < angleRequirement) {
-      g.tiltUp(Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder()));
-    } else if (g.getEncoder() > angleRequirement)
+    if (g.getEncoder() < angleRequirement + Constants.ANGLE_TOLERANCE ) {
       g.tiltDown(Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder()));
+    } else if (g.getEncoder() > angleRequirement - Constants.ANGLE_TOLERANCE) {
+      g.tiltUp(Constants.GIMBAL_MULTIPLIER * (angleRequirement - g.getEncoder()));
+    } else if (g.getEncoder() > angleRequirement - Constants.ANGLE_TOLERANCE || g.getEncoder() < angleRequirement + Constants.ANGLE_TOLERANCE) {
+      g.stop();}
   }
 
   // Called once the command ends or is interrupted.

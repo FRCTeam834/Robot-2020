@@ -15,6 +15,7 @@ public class RunPivotUp extends CommandBase {
   /**
    * Creates a new RunClimberUp.
    */
+  boolean finished;
   public RunPivotUp() {
     addRequirements(Robot.gimbalLock);
   }
@@ -23,12 +24,18 @@ public class RunPivotUp extends CommandBase {
   @Override
   public void initialize() {
     Robot.gimbalLock.tiltUp(Constants.SHOOTER_PIVOT_SPEED);
+    finished = false;
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.gimbalLock.getLimitSwitch()) {
+      finished = true;
+      Robot.gimbalLock.stop();
+      Robot.gimbalLock.resetEncoder();
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -40,6 +47,6 @@ public class RunPivotUp extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

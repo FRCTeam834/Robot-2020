@@ -59,7 +59,12 @@ public class GimbalLock extends SubsystemBase {
     return pivot.getSelectedSensorPosition() / 4096 * Math.PI * 2 * Constants.HOOD_GEAR_RATIO + 25 * 2 * Math.PI / 360;
 
   }
+
   public boolean getLimitSwitch() {
     return limitSwitch.get();
+  }
+
+  public void resetEncoder() {
+    pivot.setSelectedSensorPosition(0);
   }
 }

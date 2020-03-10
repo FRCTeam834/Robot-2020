@@ -15,6 +15,7 @@ import frc.robot.commands.DriveForwardDistance;
 import frc.robot.commands.ResetYaw;
 import frc.robot.commands.SnapTo0;
 import frc.robot.commands.SnapTo180;
+import frc.robot.commands.SnapToGoal;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -29,7 +30,7 @@ public class ShootCollectShootAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     
-    super(new AimAndShoot(), new SnapTo180(), new DriveAndIntake(204), new SnapTo0(), new DriveForwardDistance(120), new AimAndShoot());
+    super(new SnapToGoal(45), new ShooterToSpeed(), new EmptyShooterNoVision(), new SnapTo180(), new DriveForwardDistance(.5, 100), new DriveAndIntake(100), new SnapTo0(), new DriveForwardDistance(.5, 200), new SnapToGoal(45), new ShooterToSpeed(), new EmptyShooterNoVision());
     //super(new ResetYaw(), new AimAndShoot(), new SnapTo180(), new DriveAndIntake(8), new SnapTo0(), new DriveForwardDistance(4), new AimAndShoot());
   }
 }

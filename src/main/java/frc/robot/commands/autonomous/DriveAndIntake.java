@@ -21,6 +21,6 @@ public class DriveAndIntake extends ParallelRaceGroup {
   public DriveAndIntake(double distance) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new DriveForwardDistance(distance), new RunConveyorSensor());
+    super(new DriveForwardDistance(.10, distance), new RunConveyorSensor());
   }
 }

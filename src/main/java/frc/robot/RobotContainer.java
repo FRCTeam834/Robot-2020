@@ -85,7 +85,7 @@ public class RobotContainer {
   private final ResetYaw resetYaw = new ResetYaw();
   private final SnapTo0 snapTo0 = new SnapTo0();
   private final SnapTo180 snapTo180 = new SnapTo180();
-  private final DriveForwardDistance driveForwardDistance = new DriveForwardDistance(69);
+  private final DriveForwardDistance driveForwardDistance = new DriveForwardDistance(.25, 69);
   private final CenterAutonForward centerAutonForward = new CenterAutonForward();
   private final ShootCollectShootAuto shootCollectShootAuto = new ShootCollectShootAuto();
 

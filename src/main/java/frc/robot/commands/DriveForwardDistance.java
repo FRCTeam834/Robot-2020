@@ -15,12 +15,13 @@ public class DriveForwardDistance extends CommandBase {
   /**
    * Creates a new DriveForwardDistance.
    */
-  double distance, encoderStart;
+  double distance, encoderStart, speed;
   boolean finished;
-  public DriveForwardDistance(double dist) {
+  public DriveForwardDistance(double speed, double dist) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.driveTrain);
     distance = dist;
+    this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
@@ -28,14 +29,14 @@ public class DriveForwardDistance extends CommandBase {
   public void initialize() {
     Robot.driveTrain.resetEncoderPosition();
     //encoderStart = Robot.driveTrain.getRightEncoderValue();
-    Robot.driveTrain.setDrive(-.2, -.2);
+    Robot.driveTrain.setDrive(-speed, -speed);
     finished = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(distance <= (-Robot.driveTrain.getRightEncoderValue() * 3.015)) {
+    if(distance <= (-Robot.driveTrain.getRightEncoderValue() * 3.0015)) {
       finished = true;
     }
   }
